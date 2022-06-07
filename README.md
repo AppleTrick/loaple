@@ -143,6 +143,12 @@ module.exports = {
 npm install --save-dev eslint-plugin-functional
 ```
 
+# prettier 설치
+
+```
+npm install -D prettier
+```
+
 # 참고 링크
 
 - 프로젝트 생성관련
@@ -150,3 +156,6 @@ npm install --save-dev eslint-plugin-functional
 
 - ESLint 관련
   https://dev-yakuza.posstree.com/ko/react/eslint/
+
+- Preitter 관련
+  https://kjhg478.tistory.com/21
