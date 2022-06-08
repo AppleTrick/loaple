@@ -10,6 +10,7 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
 
 ```
 yarn add redux react-redux @types/react-redux
+yarn add @reduxjs/toolkit
 ```
 
 ## ESLint 설치
@@ -149,6 +150,12 @@ npm install --save-dev eslint-plugin-functional
 npm install -D prettier
 ```
 
+# react-router 설치
+
+```
+  yarn add react-router-dom v6
+```
+
 # 참고 링크
 
 - 프로젝트 생성관련
@@ -159,3 +166,6 @@ npm install -D prettier
 
 - Preitter 관련
   https://kjhg478.tistory.com/21
+
+- reactProject 구조 관련
+  https://sangseophwang.tistory.com/89?category=961033
