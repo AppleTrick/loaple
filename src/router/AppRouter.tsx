@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Main from "pages/Main";
 import Information from "pages/Information";
 import Tactics from "pages/Tactics";
-import Navigation from "components/Navigation";
+import Navigation from "components/navigation/Navigation";
 
 const AppRouter = () => {
     return (
