@@ -1,8 +1,8 @@
-function App() {
+import AppRouter from "router/AppRouter";
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>프로젝트 시작</h1>
-    </div>
+    <AppRouter/>
   );
 }
 
