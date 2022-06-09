@@ -13,6 +13,9 @@ const Navigation = () => {
             <div>
                 <Link to="/tactics">택틱</Link>
             </div>
+            <div>
+                <Link to="/testboard">테스트보드</Link>
+            </div>
         </nav>
     )
 }

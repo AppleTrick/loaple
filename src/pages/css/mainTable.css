@@ -1,2 +1,12 @@
-tr { display: block; float: left; }
-th, td { display: block; }
+table{
+    display:flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    overflow-x: auto;
+    overflow-y: hidden;
+    }
+    
+tbody
+    {display:flex}
+    
+th,td{display:block}
