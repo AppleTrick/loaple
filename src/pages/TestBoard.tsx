@@ -12,8 +12,11 @@ const TestBoard = () => {
          // 더미데이터 셋팅
         setInfo(
             [
-                { id: "park", name: "박", email: "naver", phone: "010-1234-5678" },
-                { id: "lee", name: "이", email: "kakao", phone: "010-1234-5678" }
+                { id: "01", name: "박", email: "naver", phone: "010-1234-5678" },
+                { id: "02", name: "이", email: "kakao", phone: "010-1234-5678" },
+                { id: "03", name: "이", email: "kakao", phone: "010-1234-5678" },
+                { id: "04", name: "이", email: "kakao", phone: "010-1234-5678" },
+                { id: "05", name: "이", email: "kakao", phone: "010-1234-5678" }
             ]
         );
     }, []);
@@ -81,10 +84,19 @@ const TestBoard = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>케릭터이름</th>
+                                <th>레벨</th>
+                                <th>일일컨텐츠</th>
+                                <th>카오스던전</th>
+                                <th>카오스던전휴식게이지</th>
+                                <th>가디언토벌</th>
+                                <th>가디언토벌휴식게이지</th>
+                                <th>일일에포나</th>
+                                <th>일일에포나 휴식게이지</th>
+                                <th>주간컨텐츠</th>
+                                <th>주간에포나1</th>
+                                <th>주간에포나2</th>
+                                <th>주간에포나3</th>
                             </tr>
                         </thead>
                         <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>

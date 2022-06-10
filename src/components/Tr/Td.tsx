@@ -12,6 +12,8 @@ const Td = ({item, handleRemove, handleEdit} : {item : userData , handleRemove :
             <td>{item.name}</td>
             <td>{item.email}</td>
             <td>{item.phone}</td>
+            <td onClick={onEdit}>수정</td>
+            <td onClick={onRemove}>삭제</td>
         </tr>
     )
 }
