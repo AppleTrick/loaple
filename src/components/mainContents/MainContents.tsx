@@ -7,11 +7,15 @@ const MainContents = () => {
     return (
         <>
             <h1>메인컨텐츠</h1>
-            <div>
-                케릭터 이름
+            <div style={{width: "100%" , height: 50 , backgroundColor : "royalblue"}}>
+                <div style={{width : "100px" , height : 49 , backgroundColor : "red"}}>
+                    케릭터이름
+                </div>
             </div>
-            <div>
-                케릭터 레벨
+            <div style={{width: "100%" , height: 50 , backgroundColor : "royalblue"}}>
+                <div style={{width : "100px" , height : 49 , backgroundColor : "red"}}>
+                    케릭터 레벨
+                </div>
             </div>
             <DailyChacter />
             <WeeklyCharcter/>
