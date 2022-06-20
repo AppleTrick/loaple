@@ -6,10 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 // redux 부분 내용 추가
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from 'modules';
-{/* <Provider store={store}>
-</Provider> */}
+import store from 'modules/store';
 
 
 const root = ReactDOM.createRoot(
@@ -18,7 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   
   <React.StrictMode>
+    <Provider store={store}>
       <App />
+    </Provider>
   </React.StrictMode>
 );
 reportWebVitals();

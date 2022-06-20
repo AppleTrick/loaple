@@ -1,49 +1,27 @@
-import React, { useState } from 'react'
-import MainContents from 'components/mainContents/MainContents';
+import { connect } from 'react-redux'
 
 
-const Main = () => {
-
-
-    const [charactersData, setCharctersData] = useState<loaChar[]>([
-        {
-            characterName: "하얀눈송이아래",
-            level: 1582.5,
-            daily: {
-                gardian: {
-                    count: 0,
-                    safe : 0
-                },
-                chaosDungeon: {
-                    count: 0,
-                    safe : 0
-                }
-            }
-        },
-    ]);
-
-    const addCharacterData = () => {
-        setCharctersData([...charactersData ,{
-            characterName: "하얀눈송이아래",
-            level: 1582.5,
-            daily: {
-                gardian: {
-                    count: 0,
-                    safe : 0
-                },
-                chaosDungeon: {
-                    count: 0,
-                    safe : 0
-                }
-            }
-        } ]);
-    }
+const Main = ({ thisNumber} : {thisNumber : number}) => {
 
     return (
         <>
-            <MainContents/>
+            <h2>{thisNumber}</h2>
+            <h1>hello</h1>
         </>
     )
 }
 
-export default Main;
+interface RootState {
+    thisNumber : number
+}
+
+
+const mapState = (state: RootState) => {
+    console.log(state);
+    
+    return {thisNumber : state}
+}
+
+// const connector = connect(mapState);
+
+export default connect(mapState)(Main);
