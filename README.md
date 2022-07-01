@@ -156,6 +156,12 @@ npm install -D prettier
   yarn add react-router-dom v6
 ```
 
+# style components 추가
+
+```
+  yarn add styled-components
+```
+
 # 참고 링크
 
 - 프로젝트 생성관련

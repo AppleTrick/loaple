@@ -1,5 +1,20 @@
 import { Link } from "react-router-dom"
-import './navigation.css'
+
+
+// nav {
+//     width: 100%;
+//     height: 60px;
+//     display: flex;
+//     border: solid 2px;
+  
+//   }
+  
+//   nav > div {
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
 
 const Navigation = () => {
     return (
@@ -12,9 +27,6 @@ const Navigation = () => {
             </div>
             <div>
                 <Link to="/tactics">택틱</Link>
-            </div>
-            <div>
-                <Link to="/testboard">테스트보드</Link>
             </div>
         </nav>
     )

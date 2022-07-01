@@ -1,10 +1,10 @@
-import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Main from "pages/Main";
 import Information from "pages/Information";
 import Tactics from "pages/Tactics";
 import Navigation from "components/navigation/Navigation";
-import TestBoard from "pages/TestBoard";
+
+// 라우팅 부분
 
 const AppRouter = () => {
     return (
@@ -15,7 +15,6 @@ const AppRouter = () => {
                     <Route path="/main/*" element={ <Main/>}/>
                     <Route path="/information/*" element={ <Information/>}/>
                     <Route path="/tactics/*" element={<Tactics />} />
-                    <Route path="/testboard/*" element={<TestBoard />} />
                     <Route path="/" element={<Navigate replace to="/main/*"/>}/>
                 </Routes>
             </BrowserRouter>
