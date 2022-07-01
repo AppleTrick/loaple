@@ -160,6 +160,8 @@ npm install -D prettier
 
 ```
   yarn add styled-components
+  yarn add @types/styled-components // 타입 스크립트 전용
+  yarn add styled-reset // 브라우져 스타일 초기 세팅으로 변경하는방법
 ```
 
 # 참고 링크
