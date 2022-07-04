@@ -164,6 +164,13 @@ npm install -D prettier
   yarn add styled-reset // 브라우져 스타일 초기 세팅으로 변경하는방법
 ```
 
+# React icon 설치
+
+```
+npm install react-icons --save
+npm i @types/react-icons
+```
+
 # 참고 링크
 
 - 프로젝트 생성관련
