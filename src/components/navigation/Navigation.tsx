@@ -148,7 +148,7 @@ const Navigation = () => {
                     <NavLi  onMouseEnter={handleMouseIn} onMouseLeave={handleMouseOut}>
                         <NavStyleLink to="/tactics">
                             <NavIcon><AiFillDownSquare className="icon-icon"/></NavIcon>
-                            <NavTitle>택틱</NavTitle>
+                            <NavTitle>보스택틱</NavTitle>
                         </NavStyleLink>
                     </NavLi>
                 </NavUl>
