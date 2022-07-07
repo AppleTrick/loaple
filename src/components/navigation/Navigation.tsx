@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import {AiFillHome , AiFillCalendar , AiFillInfoCircle, AiFillDownSquare} from "react-icons/ai"
 import styled from "styled-components";
-import React, { useState ,MouseEvent } from "react";
+import React, { MouseEvent, useRef, useState } from "react";
 
 const NavContaioner = styled.div`
     position : relative;
@@ -17,6 +17,10 @@ const Nav = styled.div`
     border-left: 10px solid var(--blue);
     transition: 0.5s;
     overflow: hidden;
+
+    .active {
+        width: 60px;
+    }
 `
 const NavUl = styled.ul`
     position: absolute;
@@ -111,21 +115,25 @@ const NavTitle = styled.span`
 ` 
 
 const Navigation = () => {
-    // const [hoverd, setHoverd] = useState(false);
+   const [isActive , setIsActive] = useState<boolean>(false);
+
+    const NavRef = useRef<HTMLDivElement>(null);
 
     const handleMouseIn = (e: MouseEvent<HTMLElement>) => {
-        e.currentTarget.classList.add("active")
+        e.currentTarget.classList.add("hoverd")
         
     }
 
     const handleMouseOut = (e: MouseEvent<HTMLElement>) => {
-        e.currentTarget.classList.remove("active")
-    }
+        e.currentTarget.classList.remove("hoverd")
+    }    
 
+
+    // toggle 버튼으로 isActive를 활성화 시켜줘야됨;
     return (
         <>
         <NavContaioner>
-            <Nav>
+                <Nav ref={NavRef} className={`${isActive ? 'active' : ''}`}>
                 <NavUl>
                     <NavLi>
                         <NavStyleLink to="/main">
