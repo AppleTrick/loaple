@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BiMenu } from 'react-icons/bi'
-import { MouseEvent } from "react";
+import { useDispatch } from "react-redux";
+import { NaviToggle } from "modules/NaviActions";
 
 const Toggle = styled.div`
     position: relative;
@@ -15,11 +16,14 @@ const Toggle = styled.div`
 `
 
 const MenuToggle = () => {
-    const toggleClick = (e: MouseEvent<HTMLElement>) => {
-        console.log("aa");
+    const dispatch = useDispatch();
+
+    const toggleNavi = () => {
+        dispatch(NaviToggle());
     }
+
     return (
-        <Toggle onClick={toggleClick}>
+        <Toggle onClick={toggleNavi}>
             <BiMenu/>
        </Toggle>
     )

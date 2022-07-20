@@ -2,16 +2,14 @@ import styled from "styled-components"
 
 export const NavContaioner = styled.div`
     position : relative;
-    width : 100%;
+    width: 100%;
     height : 100%;
 
-    .active {
-        width : 60px;
-    }
+   
 `
-export const Nav = styled.div`
+export const Nav = styled.div<{open : boolean}>`
     position : fixed;
-    width : 300px;
+    width: ${(props) =>  (props.open ? "60px" : "300px")};
     height : 100%;
     background : var(--blue);
     transition: 0.5s;

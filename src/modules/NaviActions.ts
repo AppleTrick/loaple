@@ -12,8 +12,6 @@ export { NaviToggle };
 
 type NaviActionTypes = | ReturnType<typeof NaviToggle>;
 
-
-// Navigation 생성 타입값
 export type NaviState= {
     open: boolean;
 }
