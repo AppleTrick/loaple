@@ -9,7 +9,7 @@ export const NavContaioner = styled.div`
 `
 export const Nav = styled.div<{open : boolean}>`
     position : fixed;
-    width: ${(props) =>  (props.open ? "60px" : "300px")};
+    width: ${(props) =>  (props.open ? "280px" : "60px")};
     height : 100%;
     background : var(--blue);
     transition: 0.5s;
