@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "modules";
 import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
+import Occupation from "containers/Occupation";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -26,11 +27,11 @@ const Main = () => {
                 <h1>
                     캐릭별
                 </h1>
-
+                <Occupation/>
                 <h1>
                     원정대별
                 </h1>
-                <h2>슬라임섬 , 메데이아  카드형식으로 구현</h2>
+                
 
             </MainDiv>
         </>
