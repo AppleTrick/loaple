@@ -4,6 +4,7 @@ import { RootState } from "modules";
 import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
+import CharactersSchedule from "containers/CharactersSchedule";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -25,11 +26,12 @@ const Main = () => {
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>
-                    캐릭별
+                    캐릭별 스케줄
                 </h1>
+                <CharactersSchedule/>
                 <Occupation/>
                 <h1>
-                    원정대별
+                    원정대 스케줄
                 </h1>
                 
 
