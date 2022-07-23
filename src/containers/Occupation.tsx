@@ -20,3 +20,5 @@ const Occupation = () => {
 }
 
 export default Occupation;
+
+/* 점령전 섬관련 코드 */

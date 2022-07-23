@@ -1,3 +1,4 @@
+import CheckButton from "components/buttonComponents/CheckButton";
 import CharacterMenu from "components/characterComponents/CharacterMenu";
 import styled from "styled-components";
 
@@ -14,7 +15,8 @@ const CharactersSchedule = () => {
     }
     return (
         <CharacterScheduleStyle>
-            <CharacterMenu/>
+            <CharacterMenu />
+            <CheckButton/>
         </CharacterScheduleStyle>
     )
 }

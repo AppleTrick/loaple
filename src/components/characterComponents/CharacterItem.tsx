@@ -1,3 +1,5 @@
+import CheckButton from "components/buttonComponents/CheckButton";
+
 type chacterInformation = {
     level: number;
     characterName: string;
@@ -52,6 +54,7 @@ const CharacterItem = () => {
 
     return (
         <>
+            <CheckButton/>
         </>
     )
 }
