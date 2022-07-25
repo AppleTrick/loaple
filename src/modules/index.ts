@@ -1,9 +1,11 @@
 import naviactions from './NaviActions';
+import ScheduleReducer from './CharacterSchedule';
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers(
     {
-        naviactions
+        naviactions,
+        ScheduleReducer
     }
 );
 
