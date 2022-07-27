@@ -1,20 +1,17 @@
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
+
+// 타입 명칭
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
+const TEST = "test" as const;
 
-const IsDone_Toggle = () => (
-    {
-        type: ISDONE_TOGGLE,
-    }
-)
-export { IsDone_Toggle }
+const IsDone_Toggle = createAction(ISDONE_TOGGLE);
+const Test = createAction<string , typeof TEST>(TEST);
+
+export { IsDone_Toggle ,Test}
 
 
 type CharacterScheduleActionTypes = | ReturnType<typeof IsDone_Toggle>
-
-// interface AdventureIslandType {
-//     Name: string,
-//     Reward : string
-// }
 
 type IsDoneVisible = {
     IsDone: boolean
@@ -63,27 +60,6 @@ export type CharacterSchedule = {
         Kayangal: ComanderInformType
     }
 }
-
-// 프로키온나침반 데이터
-//  ProcyonCompossData: {
-//     FeildBoss: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     GhostShip: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     ChaosGate: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     AdventureIsland: {
-//         IslandInform: AdventureIslandType[]
-//         Time: string,
-//         IsDone : boolean
-//     }
-// }
 
 
 export type ScheduleData = {
@@ -184,13 +160,50 @@ const initialState: ScheduleData = {
     ]
 };
 
-const ScheduleReducer = (state : ScheduleData = initialState, action : CharacterScheduleActionTypes) => {
-    switch (action.type) {
-        case ISDONE_TOGGLE:
-            return state;
-        default:
-            return state;
+
+
+const ScheduleReducer = createReducer(initialState, {
+    ISDONE_TOGGLE: (state) => state,
+    test: (state, action) => {
+        console.log("한번작동");
+        state.Characters[0].CharacterInform.CharacterName = action.payload
     }
-}
+})
 
 export default ScheduleReducer;
+
+// const ScheduleReducer = (state : ScheduleData = initialState, action : CharacterScheduleActionTypes) => {
+//     switch (action.type) {
+//         case ISDONE_TOGGLE:
+//             return state;
+//         default:
+//             return state;
+//     }
+// }
+
+
+// 프로키온나침반 데이터
+//  ProcyonCompossData: {
+//     FeildBoss: {
+//         Time: string,
+//         IsDone : boolean
+//     }
+//     GhostShip: {
+//         Time: string,
+//         IsDone : boolean
+//     }
+//     ChaosGate: {
+//         Time: string,
+//         IsDone : boolean
+//     }
+//     AdventureIsland: {
+//         IslandInform: AdventureIslandType[]
+//         Time: string,
+//         IsDone : boolean
+//     }
+// }
+
+// interface AdventureIslandType {
+//     Name: string,
+//     Reward : string
+// }
