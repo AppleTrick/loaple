@@ -6,7 +6,7 @@ const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형�
 const TEST = "test" as const;
 
 const IsDone_Toggle = createAction(ISDONE_TOGGLE);
-const Test = createAction<string , typeof TEST>(TEST);
+const Test = createAction<string ,typeof TEST>(TEST);
 
 export { IsDone_Toggle ,Test}
 
@@ -163,7 +163,7 @@ const initialState: ScheduleData = {
 
 
 const ScheduleReducer = createReducer(initialState, {
-    ISDONE_TOGGLE: (state) => state,
+    IsDone_Toggle: (state) => state,
     test: (state, action) => {
         console.log("한번작동");
         state.Characters[0].CharacterInform.CharacterName = action.payload
