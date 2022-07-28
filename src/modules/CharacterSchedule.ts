@@ -3,12 +3,10 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 // 타입 명칭
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
-const TEST = "test" as const;
 
 const IsDone_Toggle = createAction(ISDONE_TOGGLE);
-const Test = createAction<string ,typeof TEST>(TEST);
 
-export { IsDone_Toggle ,Test}
+export { IsDone_Toggle}
 
 
 type CharacterScheduleActionTypes = | ReturnType<typeof IsDone_Toggle>
@@ -164,10 +162,6 @@ const initialState: ScheduleData = {
 
 const ScheduleReducer = createReducer(initialState, {
     IsDone_Toggle: (state) => state,
-    test: (state, action) => {
-        console.log("한번작동");
-        state.Characters[0].CharacterInform.CharacterName = action.payload
-    }
 })
 
 export default ScheduleReducer;

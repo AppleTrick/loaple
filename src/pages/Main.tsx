@@ -6,7 +6,9 @@ import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
 import { useDispatch } from "react-redux";
-import { IsDone_Toggle, Test } from "modules/CharacterSchedule";
+import { IsDone_Toggle } from "modules/CharacterSchedule";
+import { EffectCallback, useEffect, useState } from "react";
+import { fetchIsland, IslandsResponse } from "api/axios";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -18,31 +20,21 @@ const MainDiv = styled.div<{open : boolean}>`
 `
 
 
-
 const Main = () => {
     const openValue = useSelector((state: RootState) => state.naviactions);
     const dataValue = useSelector((state: RootState) => state.ScheduleReducer);
-
-    console.log(dataValue.Characters[0].CharacterInform.CharacterName);
-
     const dispatch = useDispatch();
 
-    const nameChange = (text1: string) => {
-        console.log(text1);
-        
-        dispatch(Test(text1));
-    }
-
+    // 이름 체크
     const nameChangeCheck = () => {
         console.log(dataValue.Characters[0].CharacterInform.CharacterName);
     }
-    
+
 
     return (
         <>
             <MainDiv open={openValue.open}>
-                <button onClick={()=>nameChange("park")}>이름바꾸기</button>
-                <button onClick={()=>nameChangeCheck()}>이름바꾼거 확인</button>
+                <button onClick={()=>nameChangeCheck()}>이름확인</button>
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>

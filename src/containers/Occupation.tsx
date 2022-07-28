@@ -1,3 +1,5 @@
+// 점령전섬
+
 import Card from "components/card/Card";
 import styled from "styled-components";
 

@@ -1,7 +1,8 @@
 import styled from "styled-components"
 
 type CardItemProps = {
-    scheduleName : string
+    scheduleName: string
+    time ?: string
 }
 
 const CardDiv = styled.div`
@@ -40,12 +41,12 @@ const CardIconDiv = styled.div`
     
 `
 
-const Card = ({scheduleName } : CardItemProps) => {
+const Card = ({scheduleName, time } : CardItemProps) => {
     return (
         <CardDiv>
             <div>
                 <CardNameDiv>{scheduleName}</CardNameDiv>
-                <CardTimeDiv>Next Time</CardTimeDiv>
+                <CardTimeDiv>{time ? time : "NextTime"}</CardTimeDiv>
             </div>
             <div>icon</div>
         </CardDiv>

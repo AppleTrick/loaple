@@ -1,4 +1,5 @@
 import Card from "components/card/Card"
+import IslandCards from "components/islandCard/IslandCards"
 import styled from "styled-components"
 
 const ProcyonCompossDiv = styled.div`
@@ -10,14 +11,15 @@ const ProcyonCompossDiv = styled.div`
     grid-gap: 30px;
 `
 
-
 const ProcyonComposs = () => {
+    
+
     return (
         <ProcyonCompossDiv>
             <Card scheduleName={"카오스게이트"} />
             <Card scheduleName={"유령선"}/>
             <Card scheduleName={"필드보스"}/>
-            <Card scheduleName={"모험섬"}/>
+            <IslandCards/>
         </ProcyonCompossDiv>
     )
 }

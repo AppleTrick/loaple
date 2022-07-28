@@ -171,6 +171,12 @@ npm install react-icons --save
 npm i @types/react-icons
 ```
 
+# axios 설치
+
+```
+yarn add axios
+```
+
 # 참고 링크
 
 - 프로젝트 생성관련
