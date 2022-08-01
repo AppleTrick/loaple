@@ -10,7 +10,7 @@ const CheckButtonCheckBox = styled.label<{ checked: boolean }>`
   width: 14px;
   height: 14px;
   border: 1px solid ;
-  background: ${({ checked }) => (checked ? `white` : `black`)};
+  background: ${({ checked }) => (checked ? `black` : `white`)};
   cursor: pointer;
 `
 

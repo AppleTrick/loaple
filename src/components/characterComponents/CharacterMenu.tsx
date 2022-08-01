@@ -1,5 +1,5 @@
 const inform: string[] = [
-    "케릭터이름" , "레벨" , "직업"
+    "케릭터이름"
 ]
 
 const daily: string[] = [
@@ -7,7 +7,7 @@ const daily: string[] = [
 ]
 
 const weekly: string[] = [
-    "발탄","비아키스","쿠크세이튼","아브렐슈드","길드섬토벌","주간에포나"
+    "발탄","비아키스","쿠크세이튼","아브렐슈드","아르고스","카양겔"
 ]
 
 const characterMenuData  : string[][] = [
@@ -18,7 +18,7 @@ const CharacterMenu = () => {
 
   
     return (
-        <>
+        <div>
             {
                 characterMenuData.map((Menu) =>
                     (Menu.map((e, i) =>
@@ -26,7 +26,7 @@ const CharacterMenu = () => {
                     ))
                 )
             }
-        </>
+        </div>
        
     )
 }

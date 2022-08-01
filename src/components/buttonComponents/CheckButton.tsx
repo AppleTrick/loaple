@@ -1,16 +1,13 @@
-interface CheckButtonProps {
-    id: string;
-    checked: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    label?: string | null;
-  }
-
 import { ChangeEvent, useState } from "react"
 import * as Style from "./CheckButton.style"
 
-const CheckButton = () => {
+type CheckButtonProps = {
+    isDone : boolean
+}
 
-    const [isChecked, setIsChecked] = useState<boolean>(false);
+const CheckButton = ({isDone} : CheckButtonProps) => {
+
+    const [isChecked, setIsChecked] = useState<boolean>(isDone);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setIsChecked(e.target.checked);
@@ -23,7 +20,7 @@ const CheckButton = () => {
             </Style.CheckButtonCheckBox>
             <Style.checkButtonLabel>
                 <Style.CheckButtonHiddenButton type="checkbox" onChange={onChange} checked={isChecked} />
-                {isChecked ? "해야되요!" : "클리어!"}
+                {isChecked ? "클리어" : "해야되요"}
             </Style.checkButtonLabel>
         </Style.checkButtonContainer>
     )

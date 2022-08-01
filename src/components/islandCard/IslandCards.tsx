@@ -31,7 +31,7 @@ const IslandCards = () => {
             <IslandCardStyle>
                 {thisData ? thisData.Island.map((e,i) => {
                     return <IslandCard key={i} Name={ e.Name} Reward={e.Reward} />
-                }) : <h1>값이 존재하지 않습니다</h1>}
+                }) : <h2>값이 존재하지 않습니다</h2>}
             </IslandCardStyle>
         </IslandCardsStyle>
     )

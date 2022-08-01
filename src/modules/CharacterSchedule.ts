@@ -9,10 +9,10 @@ const IsDone_Toggle = createAction(ISDONE_TOGGLE);
 export { IsDone_Toggle}
 
 
-type CharacterScheduleActionTypes = | ReturnType<typeof IsDone_Toggle>
+// type CharacterScheduleActionTypes = | ReturnType<typeof IsDone_Toggle>
 
 type IsDoneVisible = {
-    IsDone: boolean
+    isDone: boolean
     Visible : boolean
 }
 
@@ -79,19 +79,19 @@ const initialState: ScheduleData = {
     Expedition: {
         Weekly: {
             ChallengeAbyss: {
-                IsDone : false,
+                isDone : false,
                 Visible : true
             },
             EffonaReward: {
-                IsDone : false,
+                isDone : false,
                 Visible : true
             },
             CrackPieceReward : {
-                IsDone : false,
+                isDone : false,
                 Visible : true
             },
             ChallengeGuardian : {
-                IsDone : false,
+                isDone : false,
                 Visible : true
             }
         }
@@ -129,27 +129,27 @@ const initialState: ScheduleData = {
                     Visible: true,
                 },
                 Valtan: {
-                    IsDone: false,
+                    isDone: false,
                     GateNumber: 0,
                     Visible : true
                 },
                 Viakiss : {
-                    IsDone: false,
+                    isDone: false,
                     GateNumber: 0,
                     Visible : true
                 },
                 Kukusaiton : {
-                    IsDone: false,
+                    isDone: false,
                     GateNumber: 0,
                     Visible : true
                 },
                 Abrelshood : {
-                    IsDone: false,
+                    isDone: false,
                     GateNumber: 0,
                     Visible : true
                 },
                 Kayangal : {
-                    IsDone: false,
+                    isDone: false,
                     GateNumber: 0,
                     Visible : true
                 },

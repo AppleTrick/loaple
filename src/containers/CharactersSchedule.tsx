@@ -1,9 +1,14 @@
-import CheckButton from "components/buttonComponents/CheckButton";
+import CharacterList from "components/characterComponents/CharacterList";
 import CharacterMenu from "components/characterComponents/CharacterMenu";
 import styled from "styled-components";
 
 const CharacterScheduleStyle = styled.div`
-    
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 30px;
 `
 
 const data = 1;
@@ -16,7 +21,7 @@ const CharactersSchedule = () => {
     return (
         <CharacterScheduleStyle>
             <CharacterMenu />
-            <CheckButton/>
+            <CharacterList/>
         </CharacterScheduleStyle>
     )
 }
