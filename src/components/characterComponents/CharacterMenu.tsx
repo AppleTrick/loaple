@@ -23,7 +23,6 @@ const CharactcerMenusDiv = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
 `
 
 const CharcterMenuDiv = styled.div`
@@ -34,7 +33,6 @@ const CharcterMenuDiv = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
 `
-
 
 const CharacterMenu = () => {
 
@@ -48,6 +46,7 @@ const CharacterMenu = () => {
                     ))
                 )
             }
+
         </CharactcerMenusDiv>
        
     )
