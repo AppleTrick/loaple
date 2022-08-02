@@ -1,3 +1,5 @@
+import styled from "styled-components"
+
 const inform: string[] = [
     "케릭터이름"
 ]
@@ -14,19 +16,39 @@ const characterMenuData  : string[][] = [
     inform,daily,weekly
 ]
 
+const CharactcerMenusDiv = styled.div`
+    width: 100px;
+    background-color: aqua;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+`
+
+const CharcterMenuDiv = styled.div`
+    display: block;
+    width: 70px;
+    height: 30px;
+    background: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+`
+
+
 const CharacterMenu = () => {
 
   
     return (
-        <div>
+        <CharactcerMenusDiv>
             {
                 characterMenuData.map((Menu) =>
                     (Menu.map((e, i) =>
-                        (<div key={i}>{e}</div>)
+                        (<CharcterMenuDiv key={i}>{e}</CharcterMenuDiv>)
                     ))
                 )
             }
-        </div>
+        </CharactcerMenusDiv>
        
     )
 }

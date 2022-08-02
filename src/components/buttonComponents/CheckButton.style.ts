@@ -26,11 +26,4 @@ const CheckButtonHiddenButton = styled.input`
   width: 1px;
 `
 
-const checkButtonLabel = styled.label`
-  margin-left: 10px;
-  line-height: 16px;
-  cursor: pointer;
-`
-
-
-export { checkButtonContainer, CheckButtonCheckBox, CheckButtonHiddenButton ,checkButtonLabel };
+export { checkButtonContainer, CheckButtonCheckBox, CheckButtonHiddenButton };

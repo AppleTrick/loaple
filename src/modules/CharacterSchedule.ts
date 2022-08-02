@@ -154,6 +154,64 @@ const initialState: ScheduleData = {
                     Visible : true
                 },
             }
+        },
+        {
+            CharacterInform: {
+                CharacterName: "하얀눈아",
+                Job: "기공사",
+                Level : 1561
+            },
+            Daily: {
+                ChaosDungeon: {
+                    isDone: false,
+                    RestGage: 0,
+                    Visible : true
+                },
+                Gaurdian : {
+                    isDone: false,
+                    RestGage: 0,
+                    Visible : true
+                },
+                DailyEffona: {
+                    isDone: false,
+                    Visible: true
+                },
+                GuildCheck: {
+                    isDone: false,
+                    Visible : true
+                }
+            },
+            Weekly: {
+                Argos: {
+                    isDone: false,
+                    Visible: true,
+                },
+                Valtan: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible : true
+                },
+                Viakiss : {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible : true
+                },
+                Kukusaiton : {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible : true
+                },
+                Abrelshood : {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible : true
+                },
+                Kayangal : {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible : true
+                },
+            }
         }
     ]
 };

@@ -1,9 +1,29 @@
 import { CharacterSchedule } from "modules/CharacterSchedule"
 import CharacterItem from "./CharacterItem"
+import styled from "styled-components"
 
 type characterInformProps = {
     characterData : CharacterSchedule
 }
+
+const CharacterInformDiv = styled.div`
+    width: 200px;
+    background-color: pink;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+`
+
+const CharacteerNameDiv = styled.div`
+    display: block;
+    width: 180px;
+    height: 30px;
+    background: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+`
 
 const CharacterInform = ({ characterData }: characterInformProps) => {
 
@@ -12,11 +32,10 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
     const Weekly = characterData.Weekly;
 
     return (
-        <>  
-            {/* inform */}
-            <div>
-                {CharacterName} {Job}icon
-            </div>
+        <CharacterInformDiv>  
+            <CharacteerNameDiv>
+                {CharacterName} {Job}
+            </CharacteerNameDiv>
             {/* Daily */}
             <CharacterItem isDone={Daily.ChaosDungeon.isDone} />
             <CharacterItem isDone={Daily.Gaurdian.isDone} />
@@ -29,7 +48,7 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
             <CharacterItem isDone={Weekly.Abrelshood.isDone} />
             <CharacterItem isDone={Weekly.Argos.isDone} />
             <CharacterItem isDone={Weekly.Kayangal.isDone} />
-        </>
+        </CharacterInformDiv>
     )
 }
 

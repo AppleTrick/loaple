@@ -17,7 +17,7 @@ export type IslandError = {
 };
 
 export const fetchIsland = async () => {
-    const res = await axios.get<IslandsResponse>("http://152.70.248.4:5000/adventureisland/");
+    const res = await axios.get<IslandsResponse>("https://lostarkapi.ga/adventureisland/");
     return res.data;
 }
 

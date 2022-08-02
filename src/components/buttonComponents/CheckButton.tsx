@@ -5,7 +5,7 @@ type CheckButtonProps = {
     isDone : boolean
 }
 
-const CheckButton = ({isDone} : CheckButtonProps) => {
+const CheckButton = ({ isDone }: CheckButtonProps) => {
 
     const [isChecked, setIsChecked] = useState<boolean>(isDone);
 
@@ -18,10 +18,9 @@ const CheckButton = ({isDone} : CheckButtonProps) => {
             <Style.CheckButtonCheckBox checked={isChecked}>
                 <Style.CheckButtonHiddenButton type="checkbox" onChange={onChange} checked={isChecked} />
             </Style.CheckButtonCheckBox>
-            <Style.checkButtonLabel>
-                <Style.CheckButtonHiddenButton type="checkbox" onChange={onChange} checked={isChecked} />
-                {isChecked ? "클리어" : "해야되요"}
-            </Style.checkButtonLabel>
+            <label>
+                휴식게이지 : {}
+            </label>
         </Style.checkButtonContainer>
     )
 }
