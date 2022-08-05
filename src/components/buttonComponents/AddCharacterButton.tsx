@@ -1,3 +1,5 @@
+import Modal from "components/modal/Modal";
+import { useState } from "react";
 import styled from "styled-components";
 
 const AddCharacterButtonDiv = styled.div`
@@ -7,16 +9,27 @@ const AddCharacterButtonDiv = styled.div`
 `
 
 
-const AddButton = styled.div`
-    
+const AddButton = styled.button`
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
 `
 
 const AddCharacterButton = () => {
+    
+    const [ModalOpen, setModalOpen] = useState<boolean>(false)
+
+    const modalOn = () => {
+        setModalOpen(true);
+    }
+    const modalClose = () => {
+        setModalOpen(false);
+    }
+
     return (
         <AddCharacterButtonDiv>
-            <AddButton>
-                추가버튼
-            </AddButton>
+            <AddButton onClick={modalOn}>추가하기</AddButton>
+            {ModalOpen && <Modal onClose={modalClose} />}
         </AddCharacterButtonDiv>
         
     )
