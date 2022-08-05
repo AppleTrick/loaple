@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import ModalPortal from "./ModalPortal";
 import styled from "styled-components";
+import CharacterAddModal from "./CharacterAddModal";
 
 type ModalProps = {
     onClose: () => void;
@@ -31,8 +31,7 @@ const Modal = ({ onClose }: ModalProps) => {
             <ModalPortal>
                 <Background>
                     <ModalBox>
-                        <h1>모달창 구현</h1>
-                        <button onClick={onClose}>끄기</button>
+                        <CharacterAddModal onClose={onClose}/>
                     </ModalBox>
                 </Background>
             </ModalPortal>

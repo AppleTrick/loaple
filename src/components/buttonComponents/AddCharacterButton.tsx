@@ -1,4 +1,5 @@
 import Modal from "components/modal/Modal";
+import ModalPortal from "components/modal/ModalPortal";
 import { useState } from "react";
 import styled from "styled-components";
 
