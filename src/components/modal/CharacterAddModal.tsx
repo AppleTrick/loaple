@@ -1,4 +1,5 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { AddsCharacter } from "modules/CharacterSchedule";
+import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 
 type CharacterData = {
@@ -13,9 +14,22 @@ type CharacterAddModalProps = {
     onClose: () => void;
 }
 
+
+
+
+
 const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
+    const dispatch = useDispatch();
 
     const onSubmit = (e: FormEvent) => {
+        dispatch(AddsCharacter({
+            CharacterName: characterData.characterName,
+            Level: characterData.characterLevel,
+            Job: characterData.characterJob,
+            GaurdianRestGage : characterData.guardianRestGage,
+            ChaosDungeonRestGage : characterData.choseDungeonRestGage
+        }));
+
         e.preventDefault();
         onClose();
     }
@@ -39,7 +53,7 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
 
     return (
         <>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={(e)=>onSubmit(e)}>
                 <h3>이름</h3>
                 <input 
                     id="characterName"
@@ -71,7 +85,7 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
                     onChange={onChange}
                 />
                 <button type="submit">등록</button>
-                <button onClick={onClose}>취소</button>
+                <button onClick={onClose}>나가기</button>
             </form>
         </>
     )

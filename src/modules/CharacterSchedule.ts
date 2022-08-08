@@ -180,8 +180,9 @@ if (initialState === null) {
 const ScheduleReducer = createReducer(initialState, {
     IsDone_Toggle: (state) => state,
     Add_Character: (state, action) => {
-        console.log("일단 작동");
-        console.log(state);
+        console.log("리듀서 작동확인");
+        
+        console.log(action.payload);
         return state
     },
 })
