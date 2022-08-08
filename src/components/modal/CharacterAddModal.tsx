@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 
 type CharacterData = {
     characterName: string
@@ -16,10 +17,6 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
-        console.log(characterData);
-        // dispatch 시켜서 데이터 추가 시켜줄 redux 가 필요함
-
-        // 모달 창 종료
         onClose();
     }
 

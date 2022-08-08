@@ -25,13 +25,16 @@ const ModalBox = styled.div`
   background-color: white;
 `;
 
+
+
 const Modal = ({ onClose }: ModalProps) => {
+
     return (
         <>
             <ModalPortal>
                 <Background>
                     <ModalBox>
-                        <CharacterAddModal onClose={onClose}/>
+                        <CharacterAddModal onClose={onClose} />
                     </ModalBox>
                 </Background>
             </ModalPortal>

@@ -22,8 +22,6 @@ const IslandCards = () => {
     useEffect(() => {
         fetchIsland().then(res => setData(res));
     }, []);
-
-    console.log(thisData);
     
     return (
         <IslandCardsStyle>

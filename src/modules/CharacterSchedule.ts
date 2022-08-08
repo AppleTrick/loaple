@@ -3,19 +3,32 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 // 타입 명칭
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
+const ADD_CHARACTER = "Add_Character" as const; // 케릭터 데이터 추가하는 형태
 
 const IsDone_Toggle = createAction(ISDONE_TOGGLE);
 
-export { IsDone_Toggle}
+export type AddCharacter = {
+    CharacterName: string
+    Job: string
+    Level : number
+    ChaosDungeonRestGage: number
+    GaurdianRestGage : number
+}
+
+const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
 
 
-// type CharacterScheduleActionTypes = | ReturnType<typeof IsDone_Toggle>
+// 외부에서 dispatch 시킬수있게 사용 
+export { IsDone_Toggle , AddsCharacter}
 
+
+// 타입 정의항목
 type IsDoneVisible = {
     isDone: boolean
     Visible : boolean
 }
 
+// 군단장 정보
 type ComanderInformType = IsDoneVisible & {
     GateNumber : number
 }
@@ -72,596 +85,105 @@ export type ScheduleData = {
     } 
     // 케릭터별 정보
     Characters: CharacterSchedule[]
-}
+} | null
 
 // 생성 값 정의
-const initialState: ScheduleData = {
-    Expedition: {
-        Weekly: {
-            ChallengeAbyss: {
-                isDone : false,
-                Visible : true
-            },
-            EffonaReward: {
-                isDone : false,
-                Visible : true
-            },
-            CrackPieceReward : {
-                isDone : false,
-                Visible : true
-            },
-            ChallengeGuardian : {
-                isDone : false,
-                Visible : true
-            }
-        }
-    },
-    Characters: [
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈송이아래",
-                Job: "건슬링어",
-                Level : 1591
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        },
-        {
-            CharacterInform: {
-                CharacterName: "하얀눈아",
-                Job: "기공사",
-                Level : 1561
-            },
-            Daily: {
-                ChaosDungeon: {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                Gaurdian : {
-                    isDone: false,
-                    RestGage: 0,
-                    Visible : true
-                },
-                DailyEffona: {
-                    isDone: false,
-                    Visible: true
-                },
-                GuildCheck: {
-                    isDone: false,
-                    Visible : true
-                }
-            },
-            Weekly: {
-                Argos: {
-                    isDone: false,
-                    Visible: true,
-                },
-                Valtan: {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Viakiss : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kukusaiton : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Abrelshood : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-                Kayangal : {
-                    isDone: false,
-                    GateNumber: 0,
-                    Visible : true
-                },
-            }
-        }
-    ]
-};
 
+let initialState: ScheduleData = JSON.parse(localStorage.getItem('scheduleData') || "null");
 
+if (initialState === null) {
+    initialState = {
+        Expedition: {
+            Weekly: {
+                ChallengeAbyss: {
+                    isDone : false,
+                    Visible : true
+                },
+                EffonaReward: {
+                    isDone : false,
+                    Visible : true
+                },
+                CrackPieceReward : {
+                    isDone : false,
+                    Visible : true
+                },
+                ChallengeGuardian : {
+                    isDone : false,
+                    Visible : true
+                }
+            }
+        },
+        Characters: [
+            {
+                CharacterInform: {
+                    CharacterName: "하얀눈송이아래",
+                    Job: "건슬링어",
+                    Level : 1591
+                },
+                Daily: {
+                    ChaosDungeon: {
+                        isDone: false,
+                        RestGage: 0,
+                        Visible : true
+                    },
+                    Gaurdian : {
+                        isDone: false,
+                        RestGage: 0,
+                        Visible : true
+                    },
+                    DailyEffona: {
+                        isDone: false,
+                        Visible: true
+                    },
+                    GuildCheck: {
+                        isDone: false,
+                        Visible : true
+                    }
+                },
+                Weekly: {
+                    Argos: {
+                        isDone: false,
+                        Visible: true,
+                    },
+                    Valtan: {
+                        isDone: false,
+                        GateNumber: 0,
+                        Visible : true
+                    },
+                    Viakiss : {
+                        isDone: false,
+                        GateNumber: 0,
+                        Visible : true
+                    },
+                    Kukusaiton : {
+                        isDone: false,
+                        GateNumber: 0,
+                        Visible : true
+                    },
+                    Abrelshood : {
+                        isDone: false,
+                        GateNumber: 0,
+                        Visible : true
+                    },
+                    Kayangal : {
+                        isDone: false,
+                        GateNumber: 0,
+                        Visible : true
+                    },
+                }
+            }
+        ]
+    };
+    localStorage.setItem("scheduleData", JSON.stringify(initialState));
+} 
 
 const ScheduleReducer = createReducer(initialState, {
     IsDone_Toggle: (state) => state,
+    Add_Character: (state, action) => {
+        console.log("일단 작동");
+        console.log(state);
+        return state
+    },
 })
 
 export default ScheduleReducer;
-
-// const ScheduleReducer = (state : ScheduleData = initialState, action : CharacterScheduleActionTypes) => {
-//     switch (action.type) {
-//         case ISDONE_TOGGLE:
-//             return state;
-//         default:
-//             return state;
-//     }
-// }
-
-
-// 프로키온나침반 데이터
-//  ProcyonCompossData: {
-//     FeildBoss: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     GhostShip: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     ChaosGate: {
-//         Time: string,
-//         IsDone : boolean
-//     }
-//     AdventureIsland: {
-//         IslandInform: AdventureIslandType[]
-//         Time: string,
-//         IsDone : boolean
-//     }
-// }
-
-// interface AdventureIslandType {
-//     Name: string,
-//     Reward : string
-// }
