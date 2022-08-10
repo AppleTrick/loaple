@@ -1,5 +1,5 @@
 import { AddsCharacter } from "modules/CharacterSchedule";
-import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 
 type CharacterData = {
@@ -15,12 +15,8 @@ type CharacterAddModalProps = {
 }
 
 
-
-
-
 const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
     const dispatch = useDispatch();
-
     const onSubmit = (e: FormEvent) => {
         dispatch(AddsCharacter({
             CharacterName: characterData.characterName,

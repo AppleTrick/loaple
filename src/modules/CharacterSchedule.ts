@@ -180,9 +180,66 @@ if (initialState === null) {
 const ScheduleReducer = createReducer(initialState, {
     IsDone_Toggle: (state) => state,
     Add_Character: (state, action) => {
-        console.log("리듀서 작동확인");
-        
-        console.log(action.payload);
+        state.Characters.push({
+            CharacterInform: {
+                CharacterName: action.payload.CharacterName,
+                Job: action.payload.Job,
+                Level: action.payload.Level
+            },
+            Daily: {
+                ChaosDungeon: {
+                    isDone: false,
+                    RestGage: action.payload.ChaosDungeonRestGage,
+                    Visible: true
+                },
+                Gaurdian: {
+                    isDone: false,
+                    RestGage: action.payload.GaurdianRestGage,
+                    Visible: true
+                },
+                DailyEffona: {
+                    isDone: false,
+                    Visible: true
+                },
+                GuildCheck: {
+                    isDone: false,
+                    Visible: true
+                }
+            },
+            Weekly: {
+                Argos: {
+                    isDone: false,
+                    Visible: true,
+                },
+                Valtan: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible: true
+                },
+                Viakiss: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible: true
+                },
+                Kukusaiton: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible: true
+                },
+                Abrelshood: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible: true
+                },
+                Kayangal: {
+                    isDone: false,
+                    GateNumber: 0,
+                    Visible: true
+                },
+            }
+
+        });
+        localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
     },
 })
