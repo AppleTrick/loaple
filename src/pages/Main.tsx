@@ -5,10 +5,7 @@ import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
-import { useDispatch } from "react-redux";
-import { IsDone_Toggle } from "modules/CharacterSchedule";
-import { EffectCallback, useEffect, useState } from "react";
-import { fetchIsland, IslandsResponse } from "api/axios";
+import { procyonDate } from "hooks/Date/Date";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -29,16 +26,8 @@ const Main = () => {
         // console.log(dataValue.Characters[0].CharacterInform.CharacterName);
 
         const date = new Date();
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        const milliseconds = date.getMilliseconds();
-
-        console.log('time: ' + date.toLocaleTimeString('ko-kr'));
-        console.log('hours: ' + hours);
-        console.log('minutes: ' + minutes);
-        console.log('seconds: ' + seconds);
-        console.log('milliseconds: ' + milliseconds);
+        const something = date.getHours();
+        console.log(something+1);
 
     }
 

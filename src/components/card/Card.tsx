@@ -1,12 +1,26 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import icons from "../../assets/icon/icon.png"
 
 type CardItemProps = {
     scheduleName: string
-    time ?: string
+    time?: string
+    onoff? : boolean
 }
 
-const CardDiv = styled.div`
+const CardNameDiv = styled.div`
+    position: relative;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: var(--blue);
+`
+const CardTimeDiv = styled.div`
+    color: var(--blue);
+    font-size: 1em;
+    margin-top: 5px;
+`
+
+const CardDiv = styled.div<{ onoff: boolean }>`
+  opacity: ${(props) => (props.onoff ? 1 : 0.5)};
   position : relative;
   background: var(--white);
   padding: 30px;
@@ -16,27 +30,22 @@ const CardDiv = styled.div`
   justify-content: space-between;
   cursor: pointer;
 
-  &:hover {
-    background: var(--blue);
-  }
+  
 
-  &:hover div{
-    color: var(--white);
-  }
+  ${(props) => (props.onoff && css`
+    &:hover{
+        ${CardNameDiv}{
+            color: var(--white);
+        }
+        ${CardTimeDiv}{
+            color: var(--white);
+        } 
+    }
+    &:hover {
+        background: var(--blue);
+    }
+  `)}  
 ` 
-
-const CardNameDiv = styled.div`
-    position: relative;
-    font-weight: 500;
-    font-size: 1.5em;
-    color: var(--blue);
-`
-
-const CardTimeDiv = styled.div`
-    color: var(--black2);
-    font-size: 1em;
-    margin-top: 5px;
-`
 
 const CardIconDiv = styled.img`
     width: 30px;
@@ -44,12 +53,12 @@ const CardIconDiv = styled.img`
     margin: 15px;
 `
 
-const Card = ({scheduleName, time } : CardItemProps) => {
+const Card = ({scheduleName, time , onoff = true } : CardItemProps) => {
     return (
-        <CardDiv>
+        <CardDiv onoff={onoff}>
             <div>
                 <CardNameDiv>{scheduleName}</CardNameDiv>
-                <CardTimeDiv>{time ? time : "NextTime"}</CardTimeDiv>
+                {onoff ? <CardTimeDiv>{time}</CardTimeDiv> : <CardTimeDiv>오늘은 일정이 없습니다</CardTimeDiv>}
             </div>
             <CardIconDiv src={icons} />
         </CardDiv>

@@ -8,3 +8,5 @@ const Tactics = () => {
 }
 
 export default Tactics;
+
+// 택틱 공유 페이지 입니다.

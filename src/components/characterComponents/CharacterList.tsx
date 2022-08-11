@@ -7,7 +7,7 @@ import AddCharacterButton from "components/buttonComponents/AddCharacterButton";
 
 const CharacterListDiv = styled.div`
     width: 100%;
-    background-color: red;
+    background-color: #c5ed8c;
     display: flex;
     overflow: scroll;
     white-space: nowrap;
