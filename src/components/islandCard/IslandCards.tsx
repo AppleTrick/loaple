@@ -4,15 +4,19 @@ import { useEffect, useState } from "react";
 import IslandCard from "./IslandCard";
 import styled from "styled-components";
 
-const IslandCardsStyle = styled.div`
-    &:hover{
-
-    }
-`
-
 const IslandCardStyle = styled.div`
+    z-index: 10;
+    visibility: hidden;
     position : absolute;
     width: inherit;
+`
+
+const IslandCardsStyle = styled.div`
+    &:hover{
+        ${IslandCardStyle}{
+            visibility: visible;
+        }
+    }
 `
 
 const IslandCards = () => {

@@ -23,18 +23,30 @@ const MainDiv = styled.div<{open : boolean}>`
 const Main = () => {
     const openValue = useSelector((state: RootState) => state.naviactions);
     const dataValue = useSelector((state: RootState) => state.ScheduleReducer);
-    const dispatch = useDispatch();
 
-    // 이름 체크
     const nameChangeCheck = () => {
-        console.log(dataValue.Characters[0].CharacterInform.CharacterName);
+        // 이름 체크용 코드
+        // console.log(dataValue.Characters[0].CharacterInform.CharacterName);
+
+        const date = new Date();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        const milliseconds = date.getMilliseconds();
+
+        console.log('time: ' + date.toLocaleTimeString('ko-kr'));
+        console.log('hours: ' + hours);
+        console.log('minutes: ' + minutes);
+        console.log('seconds: ' + seconds);
+        console.log('milliseconds: ' + milliseconds);
+
     }
 
 
     return (
         <>
             <MainDiv open={openValue.open}>
-                <button onClick={()=>nameChangeCheck()}>이름확인</button>
+                <button onClick={()=>nameChangeCheck()}>데이터 확인</button>
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>

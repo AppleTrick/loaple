@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import icons from "../../assets/icon/icon.png"
 
 type CardItemProps = {
     scheduleName: string
@@ -37,8 +38,10 @@ const CardTimeDiv = styled.div`
     margin-top: 5px;
 `
 
-const CardIconDiv = styled.div`
-    
+const CardIconDiv = styled.img`
+    width: 30px;
+    height: 30px;
+    margin: 15px;
 `
 
 const Card = ({scheduleName, time } : CardItemProps) => {
@@ -48,7 +51,7 @@ const Card = ({scheduleName, time } : CardItemProps) => {
                 <CardNameDiv>{scheduleName}</CardNameDiv>
                 <CardTimeDiv>{time ? time : "NextTime"}</CardTimeDiv>
             </div>
-            <div>icon</div>
+            <CardIconDiv src={icons} />
         </CardDiv>
     )
 }
