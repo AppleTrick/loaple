@@ -2,18 +2,25 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export type ChangeBoolean = {
     propName : string
-    showing : boolean
+    bool : boolean
 }
 
+export type ClickBoolean = {
+    propName : string
+}
+
+
 const SAMPLE_SCHEDULE = "Sample_Schedule" as const;
-const ISDONE_CHANGE = "IsDone_Change" as const
+const ISSHOW_CHANGE = "IsShow_Change" as const
+const CLICK_ISDONE = "Click_IsDone" as const
 
 
 // 액션정의
 const Sample_Schedule = createAction(SAMPLE_SCHEDULE);
-const isDoneChange = createAction<ChangeBoolean, typeof ISDONE_CHANGE>(ISDONE_CHANGE);
+const isSHowChange = createAction<ChangeBoolean, typeof ISSHOW_CHANGE>(ISSHOW_CHANGE);
+const clickIsDone = createAction<ClickBoolean, typeof CLICK_ISDONE>(CLICK_ISDONE);
 
-export { Sample_Schedule ,isDoneChange}; // 외부에서 액션 사용할수 있게 해줌
+export { Sample_Schedule ,isSHowChange, clickIsDone}; // 외부에서 액션 사용할수 있게 해줌
 
 // 타입 정의
 type ProcyonCompossDataType = {
@@ -29,7 +36,7 @@ type ProcyonCompossType = {
     todayIsland: {
         isDone : boolean
     }    
-    slimeIslane: {
+    slimeIsland: {
         isDone : boolean
     }
     medeiaIsland: {
@@ -54,7 +61,7 @@ const initialState: ProcyonCompossType = {
     todayIsland : {
         isDone: false
     },
-    slimeIslane: {
+    slimeIsland: {
         isDone : false
     },
     medeiaIsland: {
@@ -64,9 +71,13 @@ const initialState: ProcyonCompossType = {
 
 const ProcyonCompossReducer = createReducer(initialState, {
     Sample_Schedule: (state) => state,
-    IsDone_Change: (state, action) => {
-        state[action.payload.propName].showing = action.payload.showing;
+    IsShow_Change: (state, action) => {
+        state[action.payload.propName].showing = action.payload.bool;
         return state;
+    },
+    Click_IsDone: (state, action) => {
+        state[action.payload.propName].isDone = !state[action.payload.propName].isDone;
+        return state
     }
 })
 

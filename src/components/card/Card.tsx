@@ -1,3 +1,6 @@
+import { getThisCardName } from "hooks/Card/Card"
+import { clickIsDone } from "modules/ProcyonCompossActions"
+import { useDispatch } from "react-redux"
 import styled, { css } from "styled-components"
 import icons from "../../assets/icon/icon.png"
 
@@ -53,9 +56,17 @@ const CardIconDiv = styled.img`
     margin: 15px;
 `
 
-const Card = ({scheduleName, time , onoff = true } : CardItemProps) => {
+const Card = ({ scheduleName, time, onoff = true }: CardItemProps) => {
+    const dispatch = useDispatch(); 
+
+    const onClick = () => {
+        dispatch(clickIsDone({
+            propName: getThisCardName(scheduleName)
+        }))
+    }
+
     return (
-        <CardDiv onoff={onoff}>
+        <CardDiv onoff={onoff} onClick={onClick}>
             <div>
                 <CardNameDiv>{scheduleName}</CardNameDiv>
                 {onoff ? <CardTimeDiv>{time}</CardTimeDiv> : <CardTimeDiv>오늘은 일정이 없습니다</CardTimeDiv>}

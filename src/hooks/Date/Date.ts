@@ -1,4 +1,4 @@
-import { isDoneChange } from "modules/ProcyonCompossActions";
+import { isSHowChange } from "modules/ProcyonCompossActions";
 import { useDispatch } from "react-redux";
 
 
@@ -9,30 +9,30 @@ const procyonDate = () => {
     switch (date.getDay()) {
         // 일요일
         case 0:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "chaosGate"
             }))
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "fieldBoss"
             }))
             break;
         // 월요일
         case 1:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName: "chaosGate"
             }))
             break;
         // 화요일
         case 2:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "fieldBoss"
             }))
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "ghostShip"
             }))
             break;
@@ -41,30 +41,30 @@ const procyonDate = () => {
             break;
         // 목요일
         case 4:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "chaosGate"
             }))
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "ghostShip"
             }))
             break;
         // 금요일
         case 5:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "fieldBoss"
             }))
             break;
         // 토요일
         case 6:
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "chaosGate"
             }))
-            dispatch(isDoneChange({
-                showing: true,
+            dispatch(isSHowChange({
+                bool: true,
                 propName : "ghostShip"
             }))
             break;

@@ -5,7 +5,6 @@ import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
-import { procyonDate } from "hooks/Date/Date";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -18,8 +17,6 @@ const MainDiv = styled.div<{open : boolean}>`
 
 
 const Main = () => {
-    // 프로키온 컴퍼스 데이터를 처음에 초기화 시켜줌 => 한번만 초기화 시켜야 되기 때문에 메인을 만들때만 생성해준다.
-    procyonDate(); 
     const openValue = useSelector((state: RootState) => state.naviactions);
     // const dataValue = useSelector((state: RootState) => state.ScheduleReducer);
     const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer);
