@@ -1,6 +1,8 @@
 import Card from "components/card/Card"
 import IslandCards from "components/islandCard/IslandCards"
-import { procyonDate, procyonHour } from "hooks/Date/Date"
+import { procyonHour } from "hooks/Date/Date"
+import { RootState } from "modules"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 
 const ProcyonCompossDiv = styled.div`
@@ -13,8 +15,8 @@ const ProcyonCompossDiv = styled.div`
 `
 
 const ProcyonComposs = () => {
-
-    const { chaosGate, fieldBoss, ghostShip } = procyonDate();
+    const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer); 
+    const [chaosGate, fieldBoss, ghostShip ] = [procyonData.chaosGate.showing , procyonData.fieldBoss.showing, procyonData.ghostShip.showing]
     const hour = procyonHour();
 
     return (

@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   :root{
-    --blue : #287bff;
+    --blue : #52A650;
     --white : #fff;
     --grey : #f5f5f5;
     --black1 : #222;

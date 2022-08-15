@@ -1,55 +1,79 @@
-type ProcyonScheduleDate = {
-    chaosGate: boolean,
-    fieldBoss: boolean,
-    ghostShip : boolean,
-}
+import { isDoneChange } from "modules/ProcyonCompossActions";
+import { useDispatch } from "react-redux";
 
+
+// 일 월 화 수 목 금 토 까지 프로키욘 나침반을 보여줌
 const procyonDate = () => {
+    const dispatch = useDispatch();   
     const date = new Date();
-
-    const dayinform: ProcyonScheduleDate = {
-        chaosGate: false,
-        fieldBoss: false,
-        ghostShip: false,
-    }
-
     switch (date.getDay()) {
         // 일요일
         case 0:
-            dayinform.chaosGate = true;
-            dayinform.fieldBoss = true;
-            return dayinform
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "chaosGate"
+            }))
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "fieldBoss"
+            }))
+            break;
         // 월요일
         case 1:
-            dayinform.chaosGate = true;
-            return dayinform;
+            dispatch(isDoneChange({
+                showing: true,
+                propName: "chaosGate"
+            }))
+            break;
         // 화요일
         case 2:
-            dayinform.fieldBoss = true;
-            dayinform.ghostShip = true;
-            return dayinform;
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "fieldBoss"
+            }))
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "ghostShip"
+            }))
+            break;
         // 수요일
         case 3:
-            return dayinform;
+            break;
         // 목요일
         case 4:
-            dayinform.chaosGate = true;
-            dayinform.ghostShip = true;
-            return dayinform;
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "chaosGate"
+            }))
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "ghostShip"
+            }))
+            break;
         // 금요일
         case 5:
-            dayinform.fieldBoss = true;
-            return dayinform;
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "fieldBoss"
+            }))
+            break;
         // 토요일
         case 6:
-            dayinform.chaosGate = true;
-            dayinform.ghostShip = true;
-            return dayinform;
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "chaosGate"
+            }))
+            dispatch(isDoneChange({
+                showing: true,
+                propName : "ghostShip"
+            }))
+            break;
         default:
-            return dayinform;
+            break;
     }
 }
 
+// 다음 시간알려주는 함수
 const procyonHour = () => {
     const date = new Date();
     let hour = date.getHours() + 1;
