@@ -29,54 +29,62 @@ type ProcyonCompossDataType = {
 }
 
 type ProcyonCompossType = {
-    [anyKeyword: string] : ProcyonCompossDataType
+    [anyKeyword: string]: ProcyonCompossDataType
     chaosGate: ProcyonCompossDataType
     fieldBoss: ProcyonCompossDataType
     ghostShip: ProcyonCompossDataType
     todayIsland: {
-        isDone : boolean
-    }    
+        isDone: boolean
+    }
     slimeIsland: {
-        isDone : boolean
+        isDone: boolean
     }
     medeiaIsland: {
-        isDone : boolean
+        isDone: boolean
     }
-}
+} | null;
 
 // 생성값
-const initialState: ProcyonCompossType = {
-    chaosGate: {
-        isDone: false,
-        showing :false,
-    },
-    fieldBoss : {
-        isDone: false,
-        showing :false,
-    },
-    ghostShip : {
-        isDone: false,
-        showing :false,
-    },
-    todayIsland : {
-        isDone: false
-    },
-    slimeIsland: {
-        isDone : false
-    },
-    medeiaIsland: {
-        isDone : false
+let initialState: ProcyonCompossType = JSON.parse(localStorage.getItem('procyonComposs') || "null");
+
+if (initialState === null) {
+    initialState = {
+        chaosGate: {
+            isDone: false,
+            showing :false,
+        },
+        fieldBoss : {
+            isDone: false,
+            showing :false,
+        },
+        ghostShip : {
+            isDone: false,
+            showing :false,
+        },
+        todayIsland : {
+            isDone: false
+        },
+        slimeIsland: {
+            isDone : false
+        },
+        medeiaIsland: {
+            isDone : false
+        }
     }
-} 
+
+    localStorage.setItem("procyonComposs", JSON.stringify(initialState));
+}
 
 const ProcyonCompossReducer = createReducer(initialState, {
     Sample_Schedule: (state) => state,
     IsShow_Change: (state, action) => {
         state[action.payload.propName].showing = action.payload.bool;
+        localStorage.setItem("procyonComposs", JSON.stringify(state));
         return state;
     },
     Click_IsDone: (state, action) => {
         state[action.payload.propName].isDone = !state[action.payload.propName].isDone;
+        localStorage.setItem("procyonComposs", JSON.stringify(state));
         return state
     }
 })

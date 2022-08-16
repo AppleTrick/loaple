@@ -3,6 +3,8 @@ import Card from "components/card/Card";
 import { useEffect, useState } from "react";
 import IslandCard from "./IslandCard";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { RootState } from "modules";
 
 const IslandCardStyle = styled.div`
     z-index: 10;
@@ -21,15 +23,18 @@ const IslandCardsStyle = styled.div`
 
 const IslandCards = () => {
 
-    const [thisData, setData] = useState<IslandsResponse|null>(null);
+    const [thisData, setData] = useState<IslandsResponse | null>(null);
+    const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer); 
     
     useEffect(() => {
         fetchIsland().then(res => setData(res));
     }, []);
     
+
+
     return (
         <IslandCardsStyle>
-            <Card scheduleName="모험섬" time={thisData?.IslandDate.split(" ")[1]} />
+            <Card scheduleName="모험섬" time={thisData?.IslandDate.split(" ")[1]} isDone={procyonData.todayIsland.isDone} />
             <IslandCardStyle>
                 {thisData ? thisData.Island.map((e,i) => {
                     return <IslandCard key={i} Name={ e.Name} Reward={e.Reward} />

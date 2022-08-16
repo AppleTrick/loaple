@@ -7,7 +7,8 @@ import icons from "../../assets/icon/icon.png"
 type CardItemProps = {
     scheduleName: string
     time?: string
-    onoff? : boolean
+    onoff?: boolean
+    isDone ?:boolean
 }
 
 const CardNameDiv = styled.div`
@@ -22,10 +23,23 @@ const CardTimeDiv = styled.div`
     margin-top: 5px;
 `
 
-const CardDiv = styled.div<{ onoff: boolean }>`
-  opacity: ${(props) => (props.onoff ? 1 : 0.5)};
+
+const CardDiv = styled.div<{ onoff: boolean, isDone: boolean }>`
+  opacity: ${(props) => {
+    if (props.onoff) {
+        return 1
+    }else{
+        return 0.5
+    }
+  }};
   position : relative;
-  background: var(--white);
+  background: ${(props) => {
+    if (props.isDone) {
+        return "gray"
+    } else {
+        return "var(--white)";
+    }
+  }};
   padding: 30px;
   box-shadow: 0 7px 25px rgba(0,0,0,0.08);
   border-radius: 20px;
@@ -35,7 +49,7 @@ const CardDiv = styled.div<{ onoff: boolean }>`
 
   
 
-  ${(props) => (props.onoff && css`
+  ${(props) => (props.onoff && !props.isDone && css`
     &:hover{
         ${CardNameDiv}{
             color: var(--white);
@@ -56,17 +70,21 @@ const CardIconDiv = styled.img`
     margin: 15px;
 `
 
-const Card = ({ scheduleName, time, onoff = true }: CardItemProps) => {
+const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProps) => {
     const dispatch = useDispatch(); 
 
+
     const onClick = () => {
-        dispatch(clickIsDone({
-            propName: getThisCardName(scheduleName)
-        }))
+        // 해당요일이 아니면 onoff 불가능
+        if (onoff) {
+            dispatch(clickIsDone({
+                propName: getThisCardName(scheduleName)
+            }))
+        }
     }
 
     return (
-        <CardDiv onoff={onoff} onClick={onClick}>
+        <CardDiv onoff={onoff} onClick={onClick} isDone={isDone}>
             <div>
                 <CardNameDiv>{scheduleName}</CardNameDiv>
                 {onoff ? <CardTimeDiv>{time}</CardTimeDiv> : <CardTimeDiv>오늘은 일정이 없습니다</CardTimeDiv>}

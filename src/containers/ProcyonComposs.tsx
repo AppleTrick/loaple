@@ -17,13 +17,14 @@ const ProcyonCompossDiv = styled.div`
 const ProcyonComposs = () => {
     const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer); 
     const [chaosGate, fieldBoss, ghostShip ] = [procyonData.chaosGate.showing , procyonData.fieldBoss.showing, procyonData.ghostShip.showing]
+    const [chaosGateDone, fieldBossDone, ghostShipDone ] = [procyonData.chaosGate.isDone , procyonData.fieldBoss.isDone, procyonData.ghostShip.isDone]
     const hour = procyonHour();
 
     return (
         <ProcyonCompossDiv>
-            <Card scheduleName={"카오스게이트"} onoff={chaosGate} time={hour} />
-            <Card scheduleName={"유령선"} onoff={ ghostShip } time={hour}/>
-            <Card scheduleName={"필드보스"} onoff={ fieldBoss} time={hour}/>
+            <Card scheduleName={"카오스게이트"} onoff={chaosGate} time={hour} isDone={chaosGateDone } />
+            <Card scheduleName={"유령선"} onoff={ ghostShip } time={hour} isDone={ ghostShipDone}/>
+            <Card scheduleName={"필드보스"} onoff={ fieldBoss} time={hour} isDone={fieldBossDone }/>
             <IslandCards/>
         </ProcyonCompossDiv>
     )
