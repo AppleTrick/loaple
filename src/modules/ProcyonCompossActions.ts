@@ -11,16 +11,17 @@ export type ClickBoolean = {
 
 
 const SAMPLE_SCHEDULE = "Sample_Schedule" as const;
-const ISSHOW_CHANGE = "IsShow_Change" as const
-const CLICK_ISDONE = "Click_IsDone" as const
-
+const ISSHOW_CHANGE = "IsShow_Change" as const;
+const CLICK_ISDONE = "Click_IsDone" as const;
+const PROCYONALLRESET = "Procyon_All_Reset" as const;
 
 // 액션정의
 const Sample_Schedule = createAction(SAMPLE_SCHEDULE);
 const isSHowChange = createAction<ChangeBoolean, typeof ISSHOW_CHANGE>(ISSHOW_CHANGE);
 const clickIsDone = createAction<ClickBoolean, typeof CLICK_ISDONE>(CLICK_ISDONE);
+const procyonAllReset = createAction(PROCYONALLRESET);
 
-export { Sample_Schedule ,isSHowChange, clickIsDone}; // 외부에서 액션 사용할수 있게 해줌
+export { Sample_Schedule ,isSHowChange, clickIsDone, procyonAllReset}; // 외부에서 액션 사용할수 있게 해줌
 
 // 타입 정의
 type ProcyonCompossDataType = {
@@ -86,6 +87,12 @@ const ProcyonCompossReducer = createReducer(initialState, {
         state[action.payload.propName].isDone = !state[action.payload.propName].isDone;
         localStorage.setItem("procyonComposs", JSON.stringify(state));
         return state
+    },
+    Procyon_All_Reset: (state) => {
+        for (const data in state) {
+            state[data].isDone = false;
+        }
+        return state;
     }
 })
 

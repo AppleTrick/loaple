@@ -3,7 +3,7 @@ import AppRouter from "router/AppRouter";
 
 const App = () => {
 
-  // 프로키온 컴퍼스 데이터를 처음에 초기화 시켜줌 => 한번만 초기화 시켜야 되기 때문에 메인을 만들때만 생성해준다.
+  // 프로키온 컴퍼스에 보여주는 부분을 초기화 시켜준다.
   procyonDate(); 
 
   return (

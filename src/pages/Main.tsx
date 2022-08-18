@@ -5,6 +5,7 @@ import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
+import { getConectTime, setConectTime } from "hooks/Date/Date";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -18,13 +19,12 @@ const MainDiv = styled.div<{open : boolean}>`
 
 const Main = () => {
     const openValue = useSelector((state: RootState) => state.naviactions);
-    // const dataValue = useSelector((state: RootState) => state.ScheduleReducer);
     const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer);
 
     const nameChangeCheck = () => {
-        // 이름 체크용 코드
-        // console.log(dataValue.Characters[0].CharacterInform.CharacterName);
+        setConectTime();
         console.log(procyonData);
+        console.log(typeof getConectTime());
     }
 
 
