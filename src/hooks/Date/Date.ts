@@ -132,9 +132,11 @@ export const procyonHour = () => {
 
 // 처음 접속기록 확인하기
 export const checkConectTime = () => {
-
     // 기록이 없으면 데이터를 저장시켜줌
-    if (getConectTime() == null) {
+
+    
+    if (getConectTime() === null) {
+        console.log("접속 기록이 없음, 접속기록을 생성합니다.");
         setConectTime();
         return false;
     }
@@ -144,26 +146,91 @@ export const checkConectTime = () => {
 }
 
 
+// 오늘 오전 6시 Date 객체를 리턴시킴
+export const todaySixAm = () => {
+    const date = new Date();
+    const six = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 6);
+    return six;    
+}
+
 // 접속 기록 저장
 export const setConectTime = () => {
     const date = new Date();
-    localStorage.setItem('lastConectTime', JSON.stringify(date.getTime()));     
+    localStorage.setItem('lastConectTime', JSON.stringify(date));     
 }
 
-// 접속 기록 가지고 오기
+// 이전 접속 기록 가지고 오기
 export const getConectTime = () => {
-    return JSON.parse(localStorage.getItem('lastConectTime') || "null");
+    const getData = JSON.parse(localStorage.getItem('lastConectTime') || "null");
+    return getData;
 }
 
 // 현재 시간 가지고 오기
 export const nowTime = () => {
     const date = new Date();
-    return date.getTime();
+    return date;
 }
 
-// 주간 프로키온 초기화
-export const weeklyProcyonReset = () => {
+export const oneTimeReset = () => {
+    if (getConectTime() == null) { // 예외 처리부분
+        return;
+    }
+    const conectTime = new Date(getConectTime()).getTime(); // 마지막 접속 시간
+    const sixAm = todaySixAm().getTime(); // 오전 6시
+    const now = nowTime().getTime(); // 현재시간
+  
+    if (conectTime < sixAm && now < sixAm) {
+        console.log("리셋불필요");
+      
+    } else if (conectTime < sixAm && sixAm < now) {
+        console.log("리셋필요");
+        
+    } else {
+        console.log("리셋불필요");
+    }
+    setConectTime();
+}
+
+// 프로키온 초기화
+export const weeklyProcyonAllReset = () => {
     const dispatch = useDispatch(); 
     dispatch(procyonAllReset());
 }
 
+// 스케줄 전부 초기화
+export const characterAllReset = () => {
+    return 0;
+}
+
+// 일간 스케줄 초기화
+export const dailyReset = () => {
+    const date = new Date();
+    const dispatch = useDispatch();  
+    switch (date.getDay()) {
+        // 일요일
+        case 0:
+            break;
+        // 월요일
+        case 1:
+            break;
+        // 화요일
+        case 2:
+            break;
+        // 수요일
+        case 3:
+            break;
+        // 목요일
+        case 4:
+            break;
+        // 금요일
+        case 5:
+            break;
+        // 토요일
+        case 6:
+            break;
+        // 예외처리사항
+        default:
+            break;
+    }
+    
+}

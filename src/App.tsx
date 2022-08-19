@@ -1,10 +1,16 @@
-import { procyonDate } from "hooks/Date/Date";
+import { checkConectTime, getConectTime, oneTimeReset, procyonDate } from "hooks/Date/Date";
 import AppRouter from "router/AppRouter";
 
 const App = () => {
 
   // 프로키온 컴퍼스에 보여주는 부분을 초기화 시켜준다.
   procyonDate(); 
+  console.log(`마지막 접속시간 확인 ${new Date(getConectTime())}`);
+  if (checkConectTime()) { // 이전 접속 기록이 없으면 접속기록을 생성시키고,  접속기록이 있으면 데이터 리셋을 해야될지 확인이 필요하다.
+    oneTimeReset()
+  }
+  
+
 
   return (
     <AppRouter/>
