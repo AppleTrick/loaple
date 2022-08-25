@@ -1,4 +1,4 @@
-import { isSHowChange, procyonAllReset } from "modules/ProcyonCompossActions";
+import { isDoneChange, isSHowChange, procyonAllReset } from "modules/ProcyonCompossActions";
 import { useDispatch } from "react-redux";
 
 
@@ -184,10 +184,12 @@ export const oneTimeReset = () => {
       
     } else if (conectTime < sixAm && sixAm < now) {
         console.log("리셋필요");
-        
+        dailyReset();
+
     } else {
         console.log("리셋불필요");
     }
+    
     setConectTime();
 }
 
@@ -209,24 +211,100 @@ export const dailyReset = () => {
     switch (date.getDay()) {
         // 일요일
         case 0:
+            dispatch(isDoneChange({
+                bool: false,
+                propName : "chaosGate"
+            }))
+            dispatch(isDoneChange({
+                bool: false,
+                propName : "fieldBoss"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 월요일
         case 1:
+            dispatch(isSHowChange({
+                bool: false,
+                propName: "chaosGate"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 화요일
         case 2:
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "fieldBoss"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 수요일
         case 3:
+            dispatch(isSHowChange({
+                bool: false,
+                propName: "chaosGate"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "fieldBoss"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "ghostShip"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "slimeIsland"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "medeiaIsland"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 목요일
         case 4:
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "chaosGate"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 금요일
         case 5:
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "fieldBoss"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 토요일
         case 6:
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "chaosGate"
+            }))
+            dispatch(isSHowChange({
+                bool: false,
+                propName : "todayIsland"
+            }))
             break;
         // 예외처리사항
         default:

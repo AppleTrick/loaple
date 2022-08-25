@@ -1,6 +1,8 @@
 // 점령전섬
 
 import Card from "components/card/Card";
+import { RootState } from "modules";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const OccupationDiv = styled.div`
@@ -13,10 +15,14 @@ const OccupationDiv = styled.div`
 `
 
 const Occupation = () => {
+
+    const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer); 
+    const [slimeIslandDone, medeiaIslandDone] = [procyonData.slimeIsland.isDone, procyonData.medeiaIsland.isDone];
+
     return (
         <OccupationDiv>
-            <Card scheduleName={"메데이아"} />
-            <Card scheduleName={"슬라임섬"}/>
+            <Card scheduleName={"메데이아"} onoff={true} isDone={medeiaIslandDone} />
+            <Card scheduleName={"슬라임섬"} onoff={true} isDone={slimeIslandDone}/>
         </OccupationDiv>
     )
 }
