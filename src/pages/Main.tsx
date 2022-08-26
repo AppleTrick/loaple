@@ -6,6 +6,7 @@ import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
 import { setConnectTime, todaySixAm } from "hooks/Date/Date";
+import CheckboxButton from "components/buttonComponents/CheckBoxButton";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -41,6 +42,7 @@ const Main = () => {
                 <h1>
                     원정대 스케줄
                 </h1>
+                <CheckboxButton/>
             </MainDiv>
         </>
     )
