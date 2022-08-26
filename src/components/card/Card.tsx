@@ -1,8 +1,7 @@
-import { getThisCardName } from "hooks/Card/Card"
+import { getThisCardName, iconImage } from "hooks/Card/Card"
 import { clickIsDone } from "modules/ProcyonCompossActions"
 import { useDispatch } from "react-redux"
 import styled, { css } from "styled-components"
-import icons from "../../assets/icon/icon.png"
 
 type CardItemProps = {
     scheduleName: string
@@ -89,7 +88,7 @@ const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProp
                 <CardNameDiv>{scheduleName}</CardNameDiv>
                 {onoff ? <CardTimeDiv>{time}</CardTimeDiv> : <CardTimeDiv>오늘은 일정이 없습니다</CardTimeDiv>}
             </div>
-            <CardIconDiv src={icons} />
+            <CardIconDiv src={iconImage(scheduleName)} />
         </CardDiv>
     )
 }

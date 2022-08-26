@@ -87,7 +87,9 @@ const ProcyonCompossReducer = createReducer(initialState, {
         return state;
     },
     // 오전 6시 지나고 값들 초기화 시켜줄때 사용 
-    isDoneChange: (state, action) => {
+    IsDone_Change: (state, action) => {
+        console.log(action.payload.bool);
+        console.log(state[action.payload.propName].isDone);
         state[action.payload.propName].isDone = action.payload.bool;
         localStorage.setItem("procyonComposs", JSON.stringify(state));
         return state;

@@ -5,7 +5,7 @@ import TopBar from "containers/TopBar";
 import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
-import { setConectTime, todaySixAm } from "hooks/Date/Date";
+import { setConnectTime, todaySixAm } from "hooks/Date/Date";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -22,7 +22,7 @@ const Main = () => {
     const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer);
 
     const nameChangeCheck = () => {
-        setConectTime();
+        setConnectTime();
         todaySixAm();
     }
 
