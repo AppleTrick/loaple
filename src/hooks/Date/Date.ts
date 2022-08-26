@@ -7,12 +7,12 @@ export const procyonDate = () => {
     const dispatch = useDispatch();   
     const date = new Date();
 
-    const six = todaySixAm().getTime();
-    const now = nowTime().getTime();
+    const six = todaySixAm().getTime();    // 오전 6시
+    const now = nowTime().getTime();       // 현재 시간
 
-    let dayVal = date.getDay()
+    let dayVal = date.getDay()             // 현재 요일
 
-    if (six > now) {
+    if (six > now) {                       // 오전 6시 이전에면 이전 일 프로키온 나침반을 표기해준다.
         dayVal = dayVal - 1;
         if (dayVal < 0) {
             dayVal = 6;
@@ -191,6 +191,7 @@ export const setWeeklyResetValue = (isValue : boolean ) => {
     localStorage.setItem('weeklyResetValue', JSON.stringify(isValue));   
 }
 
+// 프로키온 데이터 리셋함수
 export const oneTimeReset = () => {
     if (getConnectTime() == null) { // 예외 처리부분
         return;
@@ -204,12 +205,10 @@ export const oneTimeReset = () => {
     } else if (connectTime < sixAm && sixAm < now) {
         console.log("프로키온 데이터 리셋필요");
         dailyReset();
-
     } else {
         console.log("리셋불필요");
     }
-    
-    setConnectTime();
+    setConnectTime(); // 마지막 접속 기록을 리셋 시켜준다.
 }
 
 // 일간 스케줄 초기화

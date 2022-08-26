@@ -30,7 +30,7 @@ type IsDoneVisible = {
 
 // 군단장 정보
 type ComanderInformType = IsDoneVisible & {
-    GateNumber : number
+    GateNumber : boolean
 }
 
 export type CharacterSchedule = {
@@ -147,27 +147,27 @@ if (initialState === null) {
                     },
                     Valtan: {
                         isDone: false,
-                        GateNumber: 0,
+                        GateNumber: false,
                         Visible : true
                     },
                     Viakiss : {
                         isDone: false,
-                        GateNumber: 0,
+                        GateNumber: false,
                         Visible : true
                     },
                     Kukusaiton : {
                         isDone: false,
-                        GateNumber: 0,
+                        GateNumber: false,
                         Visible : true
                     },
                     Abrelshood : {
                         isDone: false,
-                        GateNumber: 0,
+                        GateNumber: false,
                         Visible : true
                     },
                     Kayangal : {
                         isDone: false,
-                        GateNumber: 0,
+                        GateNumber: false,
                         Visible : true
                     },
                 }
@@ -213,27 +213,27 @@ const ScheduleReducer = createReducer(initialState, {
                 },
                 Valtan: {
                     isDone: false,
-                    GateNumber: 0,
+                    GateNumber: false,
                     Visible: true
                 },
                 Viakiss: {
                     isDone: false,
-                    GateNumber: 0,
+                    GateNumber: false,
                     Visible: true
                 },
                 Kukusaiton: {
                     isDone: false,
-                    GateNumber: 0,
+                    GateNumber: false,
                     Visible: true
                 },
                 Abrelshood: {
                     isDone: false,
-                    GateNumber: 0,
+                    GateNumber: false,
                     Visible: true
                 },
                 Kayangal: {
                     isDone: false,
-                    GateNumber: 0,
+                    GateNumber: false,
                     Visible: true
                 },
             }

@@ -1,3 +1,5 @@
+// 모험섬 카드 항목
+
 type IslandCardProps = {
     Name: string
     Reward : string
