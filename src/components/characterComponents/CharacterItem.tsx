@@ -2,7 +2,8 @@ import CheckboxButton from "components/buttonComponents/CheckBoxButton";
 import styled from "styled-components";
 
 type CharacterItemProps = {
-    isDone :boolean
+    isDone: boolean
+    RestGage ?: number
 }
 
 const CharacterItemDiv = styled.div`    
@@ -16,11 +17,11 @@ const CharacterItemDiv = styled.div`
 `
 
 
-const CharacterItem = ({isDone} : CharacterItemProps) => {
+const CharacterItem = ({isDone, RestGage} : CharacterItemProps) => {
 
     return (
         <CharacterItemDiv>
-            <CheckboxButton/>
+            <CheckboxButton isDone={isDone} RestGage={RestGage} />
         </CharacterItemDiv>
     )
 }

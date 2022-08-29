@@ -32,22 +32,27 @@ const Check = styled.div<{isChecked : boolean}>`
     }       
 `
 const ButtonIcon = styled.span`
-    font-size: 1.75em;
+    font-size: 1em;
 `
 
-const CheckboxButton = () => {
-    const [isChecked, setIsChecked] = useState<boolean>(false);
-    const [isRestGage, setIsRestGage] = useState<number>(0);
+type CheckBoxButtonProps = {
+    isDone: boolean
+    RestGage ?: number
+}
+
+const CheckboxButton = ({isDone , RestGage} : CheckBoxButtonProps) => {
+    const [isChecked, setIsChecked] = useState<boolean>(isDone);
+    const [isRestGage] = useState<undefined | number>(RestGage);
+    
     const onClick = () => {
         setIsChecked(!isChecked);
+        // dispatch 로 데이터 전달
     }
-
-    //
 
     return (
         <Check isChecked={isChecked} onClick={onClick} >
             <ButtonIcon>
-                {isChecked ? <AiOutlineCheck fontSize={"1em"} /> : `${isRestGage}`}                
+                {isChecked ? <AiOutlineCheck fontSize={"2em"} /> : isRestGage !== undefined ? `${isRestGage}` : ""}                
             </ButtonIcon>
         </Check>      
     )

@@ -38,8 +38,8 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
                 {CharacterName} {Job}
             </CharacteerNameDiv>
             {/* Daily */}
-            <CharacterItem isDone={Daily.ChaosDungeon.isDone} />
-            <CharacterItem isDone={Daily.Gaurdian.isDone} />
+            <CharacterItem isDone={Daily.ChaosDungeon.isDone} RestGage={ Daily.ChaosDungeon.RestGage} />
+            <CharacterItem isDone={Daily.Gaurdian.isDone} RestGage={ Daily.Gaurdian.RestGage}/>
             <CharacterItem isDone={Daily.DailyEffona.isDone} />
             <CharacterItem isDone={Daily.GuildCheck.isDone} />
             {/* Weekly */}
