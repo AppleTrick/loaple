@@ -1,17 +1,18 @@
-import CheckButton from "components/buttonComponents/CheckButton";
+import CheckboxButton from "components/buttonComponents/CheckBoxButton";
 import styled from "styled-components";
 
 type CharacterItemProps = {
     isDone :boolean
 }
 
-const CharacterItemDiv = styled.div`
-    display: block;
+const CharacterItemDiv = styled.div`    
     width: 180px;
-    height: 30px;
-    background: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid;
+    border-bottom-color: rgba(38, 29, 29, 0.5);
 `
 
 
@@ -19,7 +20,7 @@ const CharacterItem = ({isDone} : CharacterItemProps) => {
 
     return (
         <CharacterItemDiv>
-            <CheckButton isDone={isDone} />
+            <CheckboxButton/>
         </CharacterItemDiv>
     )
 }

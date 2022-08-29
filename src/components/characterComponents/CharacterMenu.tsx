@@ -18,7 +18,7 @@ const characterMenuData  : string[][] = [
 
 const CharactcerMenusDiv = styled.div`
     width: 100px;
-    background-color: aqua;
+    background: #424242;
     margin-right: 20px;
     display: flex;
     align-items: center;
@@ -26,12 +26,14 @@ const CharactcerMenusDiv = styled.div`
 `
 
 const CharcterMenuDiv = styled.div`
-    display: block;
     width: 70px;
-    height: 30px;
-    background: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid;
+    border-bottom-color: rgba(38, 29, 29, 0.5);
+    color: white;
 `
 
 const CharacterMenu = () => {

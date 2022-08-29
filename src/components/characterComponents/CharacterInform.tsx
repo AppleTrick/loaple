@@ -8,7 +8,7 @@ type characterInformProps = {
 
 const CharacterInformDiv = styled.div`
     width: 200px;
-    background-color: pink;
+    /* background-color: pink; */
     margin-left: 5px;
     display: flex;
     align-items: center;
@@ -17,12 +17,13 @@ const CharacterInformDiv = styled.div`
 `
 
 const CharacteerNameDiv = styled.div`
-    display: block;
     width: 180px;
-    height: 30px;
-    background: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid;
+    border-bottom-color: rgba(38, 29, 29, 0.5);
 `
 
 const CharacterInform = ({ characterData }: characterInformProps) => {

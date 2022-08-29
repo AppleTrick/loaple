@@ -42,7 +42,6 @@ const Main = () => {
                 <h1>
                     원정대 스케줄
                 </h1>
-                <CheckboxButton/>
             </MainDiv>
         </>
     )
