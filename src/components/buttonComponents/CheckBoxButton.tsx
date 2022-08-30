@@ -26,30 +26,29 @@ const ButtonIcon = styled.span`
 type CheckBoxButtonProps = {
     isDone: boolean
     ItemName : string
-    RestGage ?: number
+    RestGage?: number
+    ID : number
 }
 
-const CheckboxButton = ({isDone , RestGage, ItemName} : CheckBoxButtonProps) => {
-    const [isChecked, setIsChecked] = useState<boolean>(isDone);
+const CheckboxButton = ({isDone , RestGage, ItemName,ID} : CheckBoxButtonProps) => {
     const [isRestGage] = useState<undefined | number>(RestGage);
 
     const dispatch = useDispatch();
     
-    const onClick = (e : MouseEvent) => {
-        // setIsChecked(!isChecked);
-        
+    const onClick = () => {
         dispatch(IsDone_Toggle(
             {
-                IsDone: !isChecked,
-                ItemName : ItemName
+                IsDone: !isDone,
+                ItemName: ItemName,
+                ID : ID
             }
         ))
     }
 
     return (
-        <Check isChecked={isChecked} onClick={(e)=>onClick(e)} >
+        <Check isChecked={isDone} onClick={onClick} >
             <ButtonIcon>
-                {isChecked ? <AiOutlineCheck fontSize={"2em"} /> : isRestGage !== undefined ? `${isRestGage}` : ""}                
+                {isDone ? <AiOutlineCheck fontSize={"2em"} /> : isRestGage !== undefined ? `${isRestGage}` : ""}                
             </ButtonIcon>
         </Check>      
     )

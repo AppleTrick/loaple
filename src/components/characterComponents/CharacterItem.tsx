@@ -4,7 +4,8 @@ import styled from "styled-components";
 type CharacterItemProps = {
     isDone: boolean
     ItemName : string
-    RestGage ?: number
+    RestGage?: number
+    ID : number
 }
 
 const CharacterItemDiv = styled.div`    
@@ -18,10 +19,10 @@ const CharacterItemDiv = styled.div`
 `
 
 
-const CharacterItem = ({ isDone, RestGage, ItemName }: CharacterItemProps) => {
+const CharacterItem = ({ isDone, RestGage, ItemName, ID }: CharacterItemProps) => {
     return (
         <CharacterItemDiv>
-            <CheckboxButton isDone={isDone} RestGage={RestGage} ItemName={ItemName} />
+            <CheckboxButton isDone={isDone} RestGage={RestGage} ItemName={ItemName} ID={ID} />
         </CharacterItemDiv>
     )
 }

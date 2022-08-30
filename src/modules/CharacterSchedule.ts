@@ -1,4 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
+import { SortWeeklyDailyEN } from "hooks/Schedule/Schedule";
 
 
 // 타입 명칭
@@ -16,7 +17,8 @@ export type AddCharacter = {
 
 export type IsDoneType = {
     IsDone: boolean
-    ItemName : string
+    ItemName: string
+    ID : number
 }
 
 const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
@@ -261,11 +263,13 @@ const ScheduleReducer = createReducer(initialState, {
         return state
     },
     IsDone_Toggle: (state, action) => {
-
-        // state.Characters
-        console.log(action.payload.IsDone)
-        console.log(action.payload.ItemName)
-
+        const num = state.Characters.findIndex((e) => e.ID === action.payload.ID);
+        if (SortWeeklyDailyEN(action.payload.ItemName)) {
+            state.Characters[num].Daily[action.payload.ItemName].isDone = action.payload.IsDone
+        } else {
+            state.Characters[num].Weekly[action.payload.ItemName].isDone = action.payload.IsDone
+        }
+        localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
     },
 })

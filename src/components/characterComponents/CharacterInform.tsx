@@ -41,9 +41,9 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
 
             {GetMenuList().map((e, i) => {
                 if (SortWeeklyDaily(e)) {
-                    return <CharacterItem key={i} isDone={Daily[ChangeMenuList(e)].isDone} RestGage={ Daily[ChangeMenuList(e)].RestGage} ItemName={ ChangeMenuList(e)}/>
+                    return <CharacterItem key={i} ID={ characterData.ID} isDone={Daily[ChangeMenuList(e)].isDone} RestGage={ Daily[ChangeMenuList(e)].RestGage} ItemName={ ChangeMenuList(e)}/>
                 } else {
-                    return <CharacterItem key={i} isDone={Weekly[ChangeMenuList(e)].isDone} ItemName={ ChangeMenuList(e)} />
+                    return <CharacterItem key={i} ID={characterData.ID } isDone={Weekly[ChangeMenuList(e)].isDone} ItemName={ ChangeMenuList(e)} />
                 }
             })}
         </CharacterInformDiv>

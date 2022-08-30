@@ -14,3 +14,8 @@ export const SortWeeklyDaily = (Name: string) => {
     const daily = ["카오스던전", "가디언토벌", "일일에포나", "길드출첵"];
     return daily.includes(Name) ? true : false
 }
+
+export const SortWeeklyDailyEN = (Name: string) => {
+    const daily = ["ChaosDungeon","Gaurdian","DailyEffona","GuildCheck"];
+    return daily.includes(Name) ? true : false
+}
