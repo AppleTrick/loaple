@@ -1,6 +1,7 @@
 import { CharacterSchedule } from "modules/CharacterSchedule"
 import CharacterItem from "./CharacterItem"
 import styled from "styled-components"
+import { ChangeMenuList, GetMenuList, SortWeeklyDaily } from "hooks/Schedule/Schedule"
 
 type characterInformProps = {
     characterData : CharacterSchedule
@@ -37,18 +38,14 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
             <CharacteerNameDiv>
                 {CharacterName} {Job}
             </CharacteerNameDiv>
-            {/* Daily */}
-            <CharacterItem isDone={Daily.ChaosDungeon.isDone} RestGage={ Daily.ChaosDungeon.RestGage} />
-            <CharacterItem isDone={Daily.Gaurdian.isDone} RestGage={ Daily.Gaurdian.RestGage}/>
-            <CharacterItem isDone={Daily.DailyEffona.isDone} />
-            <CharacterItem isDone={Daily.GuildCheck.isDone} />
-            {/* Weekly */}
-            <CharacterItem isDone={Weekly.Valtan.isDone} />
-            <CharacterItem isDone={Weekly.Viakiss.isDone} />
-            <CharacterItem isDone={Weekly.Kukusaiton.isDone} />
-            <CharacterItem isDone={Weekly.Abrelshood.isDone} />
-            <CharacterItem isDone={Weekly.Argos.isDone} />
-            <CharacterItem isDone={Weekly.Kayangal.isDone} />
+
+            {GetMenuList().map((e, i) => {
+                if (SortWeeklyDaily(e)) {
+                    return <CharacterItem key={i} isDone={Daily[ChangeMenuList(e)].isDone} RestGage={ Daily[ChangeMenuList(e)].RestGage} ItemName={ ChangeMenuList(e)}/>
+                } else {
+                    return <CharacterItem key={i} isDone={Weekly[ChangeMenuList(e)].isDone} ItemName={ ChangeMenuList(e)} />
+                }
+            })}
         </CharacterInformDiv>
     )
 }

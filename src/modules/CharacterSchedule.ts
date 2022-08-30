@@ -5,7 +5,6 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
 const ADD_CHARACTER = "Add_Character" as const; // 케릭터 데이터 추가하는 형태
 
-const IsDone_Toggle = createAction(ISDONE_TOGGLE);
 
 export type AddCharacter = {
     CharacterName: string
@@ -15,7 +14,14 @@ export type AddCharacter = {
     GaurdianRestGage : number
 }
 
+export type IsDoneType = {
+    IsDone: boolean
+    ItemName : string
+}
+
 const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
+const IsDone_Toggle = createAction<IsDoneType , typeof ISDONE_TOGGLE >(ISDONE_TOGGLE);
+
 
 
 // 외부에서 dispatch 시킬수있게 사용 
@@ -34,12 +40,18 @@ type ComanderInformType = IsDoneVisible & {
 }
 
 export type CharacterSchedule = {
+    ID : number
     CharacterInform: {
         Level: number
         Job: string
         CharacterName : string
     }
     Daily: {
+        [anyKeyword: string]: {
+            isDone: boolean
+            Visible: boolean
+            RestGage?: number
+        } 
         ChaosDungeon: {
             isDone: boolean
             Visible: boolean
@@ -60,10 +72,11 @@ export type CharacterSchedule = {
         }
     }
     Weekly: {
-        Argos: {
+        [anyKeyword: string]: {
             isDone: boolean
             Visible : boolean
-        }
+        } | ComanderInformType
+        Argos: IsDoneVisible
         Valtan: ComanderInformType
         Viakiss: ComanderInformType
         Kukusaiton: ComanderInformType
@@ -88,8 +101,8 @@ export type ScheduleData = {
 } | null
 
 // 생성 값 정의
-
 let initialState: ScheduleData = JSON.parse(localStorage.getItem('scheduleData') || "null");
+let nextID: number;
 
 if (initialState === null) {
     initialState = {
@@ -115,6 +128,7 @@ if (initialState === null) {
         },
         Characters: [
             {
+                ID : 1,
                 CharacterInform: {
                     CharacterName: "하얀눈송이아래",
                     Job: "건슬링어",
@@ -175,12 +189,15 @@ if (initialState === null) {
         ]
     };
     localStorage.setItem("scheduleData", JSON.stringify(initialState));
+    nextID = 1;
+} else {
+    nextID = initialState.Characters[initialState.Characters.length - 1].ID;
 } 
 
 const ScheduleReducer = createReducer(initialState, {
-    IsDone_Toggle: (state) => state,
     Add_Character: (state, action) => {
         state.Characters.push({
+            ID : nextID+1,
             CharacterInform: {
                 CharacterName: action.payload.CharacterName,
                 Job: action.payload.Job,
@@ -240,6 +257,15 @@ const ScheduleReducer = createReducer(initialState, {
 
         });
         localStorage.setItem("scheduleData", JSON.stringify(state));
+        nextID++;
+        return state
+    },
+    IsDone_Toggle: (state, action) => {
+
+        // state.Characters
+        console.log(action.payload.IsDone)
+        console.log(action.payload.ItemName)
+
         return state
     },
 })

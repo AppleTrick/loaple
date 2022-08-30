@@ -1,20 +1,8 @@
 import styled from "styled-components";
 import {AiOutlineCheck} from 'react-icons/ai'
-import {useState } from "react";
-
-// const Wrapper = styled.div`
-//     border: 1px solid black;
-//     height: 200px;
-//     width: 400px;
-//     margin: auto;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-around;
-// `
+import { MouseEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { IsDone_Toggle } from "modules/CharacterSchedule";
 
 const Check = styled.div<{isChecked : boolean}>`
     height: 30px;
@@ -37,20 +25,29 @@ const ButtonIcon = styled.span`
 
 type CheckBoxButtonProps = {
     isDone: boolean
+    ItemName : string
     RestGage ?: number
 }
 
-const CheckboxButton = ({isDone , RestGage} : CheckBoxButtonProps) => {
+const CheckboxButton = ({isDone , RestGage, ItemName} : CheckBoxButtonProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(isDone);
     const [isRestGage] = useState<undefined | number>(RestGage);
+
+    const dispatch = useDispatch();
     
-    const onClick = () => {
-        setIsChecked(!isChecked);
-        // dispatch 로 데이터 전달
+    const onClick = (e : MouseEvent) => {
+        // setIsChecked(!isChecked);
+        
+        dispatch(IsDone_Toggle(
+            {
+                IsDone: !isChecked,
+                ItemName : ItemName
+            }
+        ))
     }
 
     return (
-        <Check isChecked={isChecked} onClick={onClick} >
+        <Check isChecked={isChecked} onClick={(e)=>onClick(e)} >
             <ButtonIcon>
                 {isChecked ? <AiOutlineCheck fontSize={"2em"} /> : isRestGage !== undefined ? `${isRestGage}` : ""}                
             </ButtonIcon>

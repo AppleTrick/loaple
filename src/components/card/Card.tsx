@@ -71,8 +71,7 @@ const CardIconDiv = styled.img`
 
 const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProps) => {
     const dispatch = useDispatch(); 
-
-
+    
     const onClick = () => {
         // 해당요일이 아니면 onoff 불가능
         if (onoff) {
