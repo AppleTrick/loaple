@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {AiOutlineCheck} from 'react-icons/ai'
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IsDone_Toggle } from "modules/CharacterSchedule";
 

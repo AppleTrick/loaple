@@ -84,6 +84,7 @@ export type CharacterSchedule = {
         Kukusaiton: ComanderInformType
         Abrelshood: ComanderInformType
         Kayangal: ComanderInformType
+        Akkan : ComanderInformType
     }
 }
 
@@ -186,6 +187,11 @@ if (initialState === null) {
                         GateNumber: false,
                         Visible : true
                     },
+                    Akkan : {
+                        isDone: false,
+                        GateNumber: false,
+                        Visible: true
+                    }
                 }
             }
         ]
@@ -255,6 +261,11 @@ const ScheduleReducer = createReducer(initialState, {
                     GateNumber: false,
                     Visible: true
                 },
+                Akkan : {
+                    isDone: false,
+                    GateNumber: false,
+                    Visible: true
+                }
             }
 
         });
