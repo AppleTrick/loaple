@@ -14,10 +14,10 @@ const CardNameDiv = styled.div`
     position: relative;
     font-weight: 500;
     font-size: 1.5em;
-    color: var(--blue);
+    color: #C5ED8C;
 `
 const CardTimeDiv = styled.div`
-    color: var(--blue);
+    color: #C5ED8C;
     font-size: 1em;
     margin-top: 5px;
 `
@@ -58,9 +58,18 @@ const CardDiv = styled.div<{ onoff: boolean, isDone: boolean }>`
         } 
     }
     &:hover {
-        background: var(--blue);
+        background: #C5ED8C;
     }
-  `)}  
+  `)}
+  
+  ${(props => (props.isDone && css`
+    ${CardNameDiv}{
+        color: var(--white);
+    }
+    ${CardTimeDiv}{
+        color: var(--white);
+    } 
+  `))}
 ` 
 
 const CardIconDiv = styled.img`
@@ -87,7 +96,7 @@ const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProp
                 <CardNameDiv>{scheduleName}</CardNameDiv>
                 {onoff ? <CardTimeDiv>{time}</CardTimeDiv> : <CardTimeDiv>오늘은 일정이 없습니다</CardTimeDiv>}
             </div>
-            <CardIconDiv src={iconImage(scheduleName)} />
+            {iconImage(scheduleName) === undefined ? "" :<CardIconDiv src={iconImage(scheduleName)} />}
         </CardDiv>
     )
 }

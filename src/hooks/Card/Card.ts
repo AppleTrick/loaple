@@ -14,7 +14,7 @@ const getThisCardName = (cardName: string) => {
 
 // 이름에 따른 아이콘 파일 가져 오기
 const iconImage = (scheduleName : string) => {
-    const thisName = [chaosGate, ghostShip, fieldBoss, todayIsland, medeiaIsland, slimeIsland][["카오스게이트", "유령선", "필드보스", "모험섬", "메데이아", "슬라임섬"].indexOf(scheduleName)];
+    const thisName = [chaosGate, ghostShip, fieldBoss, todayIsland, medeiaIsland, slimeIsland][["카오스게이트", "유령선", "필드보스", "모험섬", "메데이아", "슬라임섬"].indexOf(scheduleName)];    
     return thisName
 }
 

@@ -19,3 +19,13 @@ export const SortWeeklyDailyEN = (Name: string) => {
     const daily = ["ChaosDungeon","Gaurdian","DailyEffona","GuildCheck"];
     return daily.includes(Name) ? true : false
 }
+
+export const GetExpeditionList = () => {
+    const List = ["도전어비스", "도전가디언", "에포나보상", "균열의조각"];
+    return List;
+}
+
+export const ChangExpedtionList = (Name : string) => {
+    const List = ["ChallengeAbyss","ChallengeGuardian","EffonaReward","CrackPieceReward"][["도전어비스", "도전가디언", "에포나보상", "균열의조각"].indexOf(Name)];
+    return List;
+}

@@ -10,8 +10,12 @@ const OccupationDiv = styled.div`
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
     grid-gap: 30px;
+
+    @media(min-width: 768px){
+        grid-template-columns: repeat(2 , 1fr);
+    }
+
 `
 
 const Occupation = () => {

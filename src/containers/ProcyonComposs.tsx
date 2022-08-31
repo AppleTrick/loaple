@@ -10,8 +10,15 @@ const ProcyonCompossDiv = styled.div`
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
     grid-gap: 30px;
+
+    @media(min-width: 768px){
+        grid-template-columns: repeat(2 , 1fr);
+    }
+
+    @media(min-width: 1200px){
+        grid-template-columns: repeat(4 , 1fr);
+    }
 `
 
 const ProcyonComposs = () => {
