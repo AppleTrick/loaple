@@ -16,7 +16,7 @@ const Check = styled.div<{isChecked : boolean}>`
     outline: none;
 
     &:hover{
-        background-color: ${(props) => props.isChecked ? "#5bcd3e" : "#a5a5a5"};
+        background-color: ${(props) => props.isChecked ? "#2d7c19" : "#a5a5a5"};
     }       
 `
 const ButtonIcon = styled.span`

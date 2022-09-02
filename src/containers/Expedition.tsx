@@ -1,5 +1,7 @@
 import Card from "components/card/Card";
-import { GetExpeditionList } from "hooks/Schedule/Schedule";
+import { ChangExpedtionList, GetExpeditionList } from "hooks/Schedule/Schedule";
+import { RootState } from "modules";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const GridDiv = styled.div`
@@ -26,15 +28,20 @@ const GridDiv = styled.div`
 // `
 
 const Expedition = () => {
+    const ExpeditionData = useSelector((state: RootState) => state.ScheduleReducer.Expedition);
+
     return (
-        <GridDiv>
+        <>
+            <GridDiv>
             {GetExpeditionList().map((e,i) => {
                 return (
                     // <InsideComponent key={i}><h3>{e}</h3></InsideComponent>
-                    <Card key={i} scheduleName={e} /> 
+                    <Card key={i} scheduleName={e} isDone={ExpeditionData.Weekly[ChangExpedtionList(e)].isDone} /> 
                 )
             } )}
-        </GridDiv>
+            </GridDiv>
+        </>
+            
     )
 }
 

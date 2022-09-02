@@ -18,4 +18,12 @@ const iconImage = (scheduleName : string) => {
     return thisName
 }
 
-export {getThisCardName, iconImage}
+// 프로키온 컴퍼스인지 , 주간 컨텐츠인지 확인하는 함수
+const isProCyonOrSchedule = (scheduleName : string) => {
+    const value = ["도전어비스", "도전가디언", "에포나보상", "균열의조각"].includes(scheduleName);
+
+    // true = 주간 컨텐츠 ,false 프로키온나침반
+    return value;
+}
+
+export {getThisCardName, iconImage, isProCyonOrSchedule}

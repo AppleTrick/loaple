@@ -1,4 +1,6 @@
-import { getThisCardName, iconImage } from "hooks/Card/Card"
+import { getThisCardName, iconImage, isProCyonOrSchedule } from "hooks/Card/Card"
+import { ChangExpedtionList } from "hooks/Schedule/Schedule"
+import { IsDone_Weekly } from "modules/CharacterSchedule"
 import { clickIsDone } from "modules/ProcyonCompossActions"
 import { useDispatch } from "react-redux"
 import styled, { css } from "styled-components"
@@ -84,9 +86,16 @@ const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProp
     const onClick = () => {
         // 해당요일이 아니면 onoff 불가능
         if (onoff) {
-            dispatch(clickIsDone({
-                propName: getThisCardName(scheduleName)
-            }))
+            if (isProCyonOrSchedule(scheduleName)) {
+                dispatch(IsDone_Weekly({
+                    propsName : ChangExpedtionList(scheduleName)
+                }))
+            } else {
+                dispatch(clickIsDone({
+                    propName: getThisCardName(scheduleName)
+                }))
+            }
+           
         }
     }
 

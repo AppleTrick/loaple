@@ -5,6 +5,7 @@ import { SortWeeklyDailyEN } from "hooks/Schedule/Schedule";
 // 타입 명칭
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
 const ADD_CHARACTER = "Add_Character" as const; // 케릭터 데이터 추가하는 형태
+const ISDONE_WEEKLY = "IsDone_Weekly" as const; // 참 거짓 바꿔주는거
 
 
 export type AddCharacter = {
@@ -21,13 +22,17 @@ export type IsDoneType = {
     ID : number
 }
 
+export type IsDoneWeekly = {
+    propsName: string
+}
 const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
-const IsDone_Toggle = createAction<IsDoneType , typeof ISDONE_TOGGLE >(ISDONE_TOGGLE);
+const IsDone_Toggle = createAction<IsDoneType, typeof ISDONE_TOGGLE>(ISDONE_TOGGLE);
+const IsDone_Weekly = createAction<IsDoneWeekly, typeof ISDONE_WEEKLY>(ISDONE_WEEKLY);
 
 
 
 // 외부에서 dispatch 시킬수있게 사용 
-export { IsDone_Toggle , AddsCharacter}
+export { IsDone_Toggle , AddsCharacter , IsDone_Weekly}
 
 
 // 타입 정의항목
@@ -93,6 +98,7 @@ export type ScheduleData = {
     // 원정대별 정보
     Expedition: {
         Weekly: {
+            [anyKeyword: string]: IsDoneVisible
             ChallengeAbyss: IsDoneVisible
             ChallengeGuardian: IsDoneVisible
             EffonaReward: IsDoneVisible
@@ -283,6 +289,11 @@ const ScheduleReducer = createReducer(initialState, {
         localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
     },
+    IsDone_Weekly: (state, action) => {
+        state.Expedition.Weekly[action.payload.propsName].isDone = !state.Expedition.Weekly[action.payload.propsName].isDone
+        localStorage.setItem("scheduleData", JSON.stringify(state));
+        return state
+    }
 })
 
 export default ScheduleReducer;
