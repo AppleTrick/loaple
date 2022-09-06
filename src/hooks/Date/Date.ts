@@ -343,9 +343,23 @@ export const characterAllReset = () => {
 }
 
 export const scheduleReset = () => {
+    const connectTime = new Date(getConnectTime()).getTime(); // 마지막 데이터 기록 시간
+    const sixAm = todaySixAm().getTime(); // 오전 6시
+    const now = nowTime().getTime(); // 현재시간
+
     // 날짜기 지낫는지 확인해야됨
+
     // 과거 데이터 < 현재 접속일 < 오전 현재일 6시일 경우
+    if (connectTime < now && now < sixAm) {
+        
     // 과거 데이터 접속 < 현재일 오전 6시 < 현재 접속일일 경우
+    } else if (connectTime < sixAm && sixAm < now) {
+        console.log();
+    
     // 현재일 오전 6시 < 과거 데이터 < 현재 접속일일 경우 => noting
+    } else if (sixAm < connectTime && connectTime < now) {
+        console.log("reset 필요 없음");
+    }
+    
     return 0;
 }
