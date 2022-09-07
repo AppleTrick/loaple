@@ -2,6 +2,8 @@ import { CharacterSchedule } from "modules/CharacterSchedule"
 import CharacterItem from "./CharacterItem"
 import styled from "styled-components"
 import { ChangeMenuList, GetMenuList, SortWeeklyDaily } from "hooks/Schedule/Schedule"
+import { useState } from "react"
+import CharacterUpdateModal from "components/modal/CharacterUpdateModal"
 
 type characterInformProps = {
     characterData : CharacterSchedule
@@ -33,9 +35,21 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
     const Daily = characterData.Daily;
     const Weekly = characterData.Weekly;
 
+    // 모달 부분
+    const [CharacterModal, setCharacterModal] = useState<boolean>(false)
+
+    const openCharacterInform = () => {
+        setCharacterModal(true);
+    }
+
+    const closeCharacterInform = () => {
+        setCharacterModal(false);
+    }
+
     return (
+        <>
         <CharacterInformDiv>  
-            <CharacteerNameDiv>
+            <CharacteerNameDiv onClick={openCharacterInform}>
                 {CharacterName} {Job}
             </CharacteerNameDiv>
 
@@ -46,7 +60,9 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
                     return <CharacterItem key={i} ID={characterData.ID } isDone={Weekly[ChangeMenuList(e)].isDone} ItemName={ ChangeMenuList(e)} />
                 }
             })}
-        </CharacterInformDiv>
+            </CharacterInformDiv>
+            {CharacterModal && <CharacterUpdateModal onClose={closeCharacterInform} getCharacterData={ characterData } />}
+        </>
     )
 }
 

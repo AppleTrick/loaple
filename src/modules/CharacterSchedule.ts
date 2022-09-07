@@ -6,8 +6,19 @@ import { SortWeeklyDailyEN } from "hooks/Schedule/Schedule";
 const ISDONE_TOGGLE = "IsDone_Toggle" as const; // true, false 바꿔주는 형태
 const ADD_CHARACTER = "Add_Character" as const; // 케릭터 데이터 추가하는 형태
 const ISDONE_WEEKLY = "IsDone_Weekly" as const; // 참 거짓 바꿔주는거
+const UPDATE_CHARACTER = "Update_Character" as const // 케릭터 정보 업데이트
+const DELETE_CHARACTER = "Delete_Character" as const // 케릭터 정보 삭제
 
 
+// 케릭터 업데이트 타입
+export type UpdateCharacter = AddCharacter & DeleteCharacter
+
+// 케릭터 삭제 타입
+export type DeleteCharacter = {
+    ID : number
+}
+
+// 케릭터 추가 타입정의
 export type AddCharacter = {
     CharacterName: string
     Job: string
@@ -16,23 +27,27 @@ export type AddCharacter = {
     GaurdianRestGage : number
 }
 
+// 한일 체크 타입
 export type IsDoneType = {
     IsDone: boolean
     ItemName: string
     ID : number
 }
 
+// 주간 컨텐츠 체크 타입
 export type IsDoneWeekly = {
     propsName: string
 }
 const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
 const IsDone_Toggle = createAction<IsDoneType, typeof ISDONE_TOGGLE>(ISDONE_TOGGLE);
 const IsDone_Weekly = createAction<IsDoneWeekly, typeof ISDONE_WEEKLY>(ISDONE_WEEKLY);
+const Update_Character = createAction<UpdateCharacter , typeof UPDATE_CHARACTER>(UPDATE_CHARACTER);
+const Delete_Character = createAction<DeleteCharacter, typeof DELETE_CHARACTER>(DELETE_CHARACTER);
 
 
 
 // 외부에서 dispatch 시킬수있게 사용 
-export { IsDone_Toggle , AddsCharacter , IsDone_Weekly}
+export { IsDone_Toggle , AddsCharacter , IsDone_Weekly , Update_Character, Delete_Character}
 
 
 // 타입 정의항목
@@ -293,6 +308,14 @@ const ScheduleReducer = createReducer(initialState, {
         state.Expedition.Weekly[action.payload.propsName].isDone = !state.Expedition.Weekly[action.payload.propsName].isDone
         localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
+    },
+    Update_Characte: (state, action) => {
+        return 
+    },
+    Delete_Character: (state, action) => {
+        state.Characters = state.Characters.filter((e) => e.ID !== action.payload.ID);
+        localStorage.setItem("scheduleData", JSON.stringify(state));
+        return state;
     }
 })
 
