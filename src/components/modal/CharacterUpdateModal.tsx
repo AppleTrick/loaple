@@ -115,7 +115,7 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
                             placeholder="카오스던전 휴식게이지를 입력해주세요." value={choseDungeonRestGage}
                             onChange={onChange}
                         />
-                        <button type="submit">등록</button>
+                        <button type="submit">수정하기</button>
                         <button type="button" onClick={onDelete}>삭제하기</button>
                         <button onClick={onClose}>나가기</button>
                     </form>

@@ -28,9 +28,9 @@ const CharacterList = () => {
 
     return (
         <CharacterListDiv>
-            {dataValue.Characters.map((e: CharacterSchedule, i) => {
+            {dataValue ? dataValue.Characters.map((e: CharacterSchedule, i) => {
                 return <CharacterInform key={i} characterData={e} />
-            })}
+            }) : ""}
             <AddCharacterButton/>
         </CharacterListDiv>
     )

@@ -23,22 +23,21 @@ const IslandCardsStyle = styled.div`
 
 const IslandCards = () => {
 
-    const [thisData, setData] = useState<IslandsResponse | null>(null);
+    const [thisData, setData] = useState<IslandsResponse | undefined>();
     const procyonData = useSelector((state: RootState) => state.ProcyonCompossReducer); 
     
     useEffect(() => {
-        fetchIsland().then(res => setData(res));
+        fetchIsland().then(setData);
     }, []);
     
 
-
+``
     return (
         <IslandCardsStyle>
             <Card scheduleName="모험섬" time={thisData?.IslandDate.split(" ")[1]} isDone={procyonData.todayIsland.isDone} />
             <IslandCardStyle>
-                {thisData ? thisData.Island.map((e,i) => {
-                    return <IslandCard key={i} Name={ e.Name} Reward={e.Reward} />
-                }) : <h2>값이 존재하지 않습니다</h2>}
+                {thisData?.Island.map((e,i) => (<IslandCard key={i} Name={ e.Name} Reward={e.Reward} />
+                 )) ?? <h2>값이 존재하지 않습니다</h2>}
             </IslandCardStyle>
         </IslandCardsStyle>
     )

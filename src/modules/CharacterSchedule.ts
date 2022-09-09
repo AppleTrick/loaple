@@ -151,76 +151,18 @@ if (initialState === null) {
             }
         },
         Characters: [
-            {
-                ID : 1,
-                CharacterInform: {
-                    CharacterName: "하얀눈송이아래",
-                    Job: "건슬링어",
-                    Level : 1591
-                },
-                Daily: {
-                    ChaosDungeon: {
-                        isDone: false,
-                        RestGage: 0,
-                        Visible : true
-                    },
-                    Gaurdian : {
-                        isDone: false,
-                        RestGage: 0,
-                        Visible : true
-                    },
-                    DailyEffona: {
-                        isDone: false,
-                        Visible: true
-                    },
-                    GuildCheck: {
-                        isDone: false,
-                        Visible : true
-                    }
-                },
-                Weekly: {
-                    Argos: {
-                        isDone: false,
-                        Visible: true,
-                    },
-                    Valtan: {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible : true
-                    },
-                    Viakiss : {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible : true
-                    },
-                    Kukusaiton : {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible : true
-                    },
-                    Abrelshood : {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible : true
-                    },
-                    Kayangal : {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible : true
-                    },
-                    Akkan : {
-                        isDone: false,
-                        GateNumber: false,
-                        Visible: true
-                    }
-                }
-            }
+            
         ]
     };
     localStorage.setItem("scheduleData", JSON.stringify(initialState));
-    nextID = 1;
+    nextID = 0;
 } else {
-    nextID = initialState.Characters[initialState.Characters.length - 1].ID;
+    if (initialState.Characters.length == 0 ) {
+        nextID = 0;
+    } else {
+        nextID = initialState.Characters[initialState.Characters.length - 1].ID;
+    }
+    
 } 
 
 const ScheduleReducer = createReducer(initialState, {
@@ -309,8 +251,20 @@ const ScheduleReducer = createReducer(initialState, {
         localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
     },
-    Update_Characte: (state, action) => {
-        return 
+    Update_Character: (state, action) => {
+        const data = action.payload;
+        const arr = state.Characters.find((e) => e.ID === action.payload.ID);
+        if (arr) {
+            arr.CharacterInform.CharacterName = data.CharacterName;
+            arr.CharacterInform.Level = data.Level;
+            arr.CharacterInform.Job = data.Job;
+            arr.Daily.ChaosDungeon.RestGage = data.ChaosDungeonRestGage;
+            arr.Daily.Gaurdian.RestGage = data.GaurdianRestGage;
+        } else {
+            console.log("잘못된 수정입니다.");     
+        }
+        localStorage.setItem("scheduleData", JSON.stringify(state));
+        return state;
     },
     Delete_Character: (state, action) => {
         state.Characters = state.Characters.filter((e) => e.ID !== action.payload.ID);

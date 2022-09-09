@@ -17,8 +17,13 @@ export type IslandError = {
 };
 
 export const fetchIsland = async () => {
-    const res = await axios.get<IslandsResponse>("https://lostarkapi.ga/adventureisland/");
-    return res.data;
+    try {
+        const res = await axios.get<IslandsResponse>("https://lostarkapi.ga/adventureisland/");
+        return res.data;
+    } catch (err) {
+        console.error(err)
+        return
+    }
 }
 
 
