@@ -1,6 +1,7 @@
 import Modal from "components/modal/Modal";
 import { useState } from "react";
 import styled from "styled-components";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const AddCharacterButtonDiv = styled.div`
     display: flex;
@@ -9,10 +10,14 @@ const AddCharacterButtonDiv = styled.div`
 `
 
 
-const AddButton = styled.button`
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+const AddButton = styled.div`
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
 `
 
 const AddCharacterButton = () => {
@@ -28,7 +33,9 @@ const AddCharacterButton = () => {
 
     return (
         <AddCharacterButtonDiv>
-            <AddButton onClick={modalOn}>추가하기</AddButton>
+            <AddButton>
+                <AiOutlinePlusCircle onClick={modalOn} fontSize={"2em"} />
+            </AddButton>
             {ModalOpen && <Modal onClose={modalClose} />}
         </AddCharacterButtonDiv>
         
