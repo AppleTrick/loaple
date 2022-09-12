@@ -1,3 +1,11 @@
+import ChaosDungeon from "../../assets/icon/ChaosDungeon.png";
+import Gaurdian from "../../assets/icon/Gaurdian.png";
+import DailyEffona from "../../assets/icon/DailyEffona.png";
+import GuildCheck from "../../assets/icon/GuildCheck.png";
+import Command from "../../assets/icon/Command.png";
+import AbyssRaid from "../../assets/icon/AbyssRaid.png";
+import AbyssDungeon from "../../assets/icon/AbyssDungeon.png";
+
 // 메뉴 리스트 리턴
 export const GetMenuList = () => {
     const listType: string[] = ["카오스던전", "가디언토벌", "일일에포나", "길드출첵", "발탄", "비아키스", "쿠크세이튼", "아브렐슈드","일리아칸","아르고스", "카양겔"]
@@ -32,4 +40,30 @@ export const GetExpeditionList = () => {
 export const ChangExpedtionList = (Name : string) => {
     const List = ["ChallengeAbyss","ChallengeGuardian","EffonaReward","CrackPieceReward"][["도전어비스", "도전가디언", "에포나보상", "균열의조각"].indexOf(Name)];
     return List;
+}
+
+export const useMenuListIcon = (MenuName: string) => {
+
+    switch (MenuName) {
+        case "카오스던전":
+            return ChaosDungeon;
+        case "가디언토벌":
+            return Gaurdian;
+        case "일일에포나":
+            return DailyEffona;
+        case "길드출첵":
+            return GuildCheck;
+        case "비아키스" :
+        case "쿠크세이튼" :
+        case "발탄":
+        case "아브렐슈드":
+        case "일리아칸":
+            return Command;
+        case "아르고스":
+            return AbyssRaid;
+        case "카양겔":
+            return AbyssDungeon;
+        default:
+            return undefined;
+    }
 }

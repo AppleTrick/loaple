@@ -1,4 +1,4 @@
-import { GetMenuList } from "hooks/Schedule/Schedule"
+import { GetMenuList, useMenuListIcon } from "hooks/Schedule/Schedule"
 import styled from "styled-components"
 
 const inform: string[] = [
@@ -10,7 +10,7 @@ const characterMenuData: string[][] = [
 ]
 
 const CharactcerMenusDiv = styled.div`
-    width: 100px;
+    width: 150px;
     background: #424242;
     margin-right: 20px;
     display: flex;
@@ -19,25 +19,54 @@ const CharactcerMenusDiv = styled.div`
 `
 
 const CharcterMenuDiv = styled.div`
-    width: 70px;
+    width: 100px;
     height: 40px;
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     border-bottom: solid;
     border-bottom-color: rgba(38, 29, 29, 0.5);
     color: white;
 `
 
+const IconImgDiv = styled.img`
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+`
+
+const NameDiv = styled.div`
+    float:right;
+    flex-grow: 1;
+    text-align: center;
+`
+
 const CharacterMenu = () => {
 
-  
+    const isImageExist = (e: string) => {
+        if (useMenuListIcon(e)) {
+            return <IconImgDiv src={useMenuListIcon(e) } />
+        } else {
+            return ""
+        }
+    }
+
     return (
         <CharactcerMenusDiv>
             {
                 characterMenuData.map((Menu) =>
                     (Menu.map((e, i) =>
-                        (<CharcterMenuDiv key={i}>{e}</CharcterMenuDiv>)
+                        (
+                            <CharcterMenuDiv key={i}>
+                                {isImageExist(e)}
+                            <NameDiv>
+                                <div>
+                                    {e}
+                                </div>
+                            </NameDiv>
+                               
+                            </CharcterMenuDiv>
+                        )
                     ))
                 )
             }
