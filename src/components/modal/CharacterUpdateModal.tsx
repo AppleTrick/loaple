@@ -1,11 +1,11 @@
 import { CharacterSchedule, Delete_Character, Update_Character } from "modules/CharacterSchedule";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components"
 import ModalPortal from "./ModalPortal";
 
 const Background = styled.div`
-    z-index: 999; /* 의문이 들었던 부분 */
+    z-index: 998; /* 의문이 들었던 부분 */
     height: 100%;
     width: 100%;
     display: flex;
@@ -19,8 +19,9 @@ const Background = styled.div`
 `;
 
 const ModalBox = styled.div`
-  width: 25rem;
-  background-color: white;
+    z-index: 999;
+    width: 25rem;
+    background-color: white;
 `;
 
 type ModalProps = {
@@ -62,6 +63,11 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
         onClose();
     }
 
+    const backgroundClose = (e: MouseEvent) => {
+        if (e.target !== e.currentTarget) return;
+        onClose();   
+    }
+
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
@@ -82,7 +88,7 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
 
     return (
         <ModalPortal>
-            <Background>
+            <Background onClick={(e)=>backgroundClose(e)}>
                 <ModalBox>
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <h3>이름</h3>

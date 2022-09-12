@@ -1,6 +1,7 @@
 import ModalPortal from "./ModalPortal";
 import styled from "styled-components";
 import CharacterAddModal from "./CharacterAddModal";
+import { MouseEvent } from "react";
 
 type ModalProps = {
     onClose: () => void;
@@ -29,10 +30,15 @@ const ModalBox = styled.div`
 
 const Modal = ({ onClose }: ModalProps) => {
 
+    const backgroundClose = (e: MouseEvent) => {
+        if (e.target !== e.currentTarget) return;
+        onClose();   
+    }
+
     return (
         <>
             <ModalPortal>
-                <Background>
+                <Background onClick={(e)=>backgroundClose(e)}>
                     <ModalBox>
                         <CharacterAddModal onClose={onClose} />
                     </ModalBox>

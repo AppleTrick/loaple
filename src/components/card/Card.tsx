@@ -58,8 +58,6 @@ const CardDiv = styled.div<{ onoff: boolean, isDone: boolean }>`
         ${CardTimeDiv}{
             color: var(--white);
         } 
-    }
-    &:hover {
         background: #C5ED8C;
     }
   `)}
