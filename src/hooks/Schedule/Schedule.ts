@@ -10,21 +10,25 @@ export const ChangeMenuList = (MenuName : string) => {
     return thisMenu;
 }
 
+// 주간일정 일일일정 한글로 구분하는 함수
 export const SortWeeklyDaily = (Name: string) => {
     const daily = ["카오스던전", "가디언토벌", "일일에포나", "길드출첵"];
     return daily.includes(Name) ? true : false
 }
 
+// 주간일정 일일일정 영문으로 구분하는 함수
 export const SortWeeklyDailyEN = (Name: string) => {
     const daily = ["ChaosDungeon","Gaurdian","DailyEffona","GuildCheck"];
     return daily.includes(Name) ? true : false
 }
 
+// 원정대 일정 리스트로 가지고 오기
 export const GetExpeditionList = () => {
     const List = ["도전어비스", "도전가디언", "에포나보상", "균열의조각"];
     return List;
 }
 
+// 원정대 일정 영문으로 변경
 export const ChangExpedtionList = (Name : string) => {
     const List = ["ChallengeAbyss","ChallengeGuardian","EffonaReward","CrackPieceReward"][["도전어비스", "도전가디언", "에포나보상", "균열의조각"].indexOf(Name)];
     return List;
