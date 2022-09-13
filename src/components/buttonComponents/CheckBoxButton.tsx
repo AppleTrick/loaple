@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {AiOutlineCheck} from 'react-icons/ai'
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IsDone_Toggle } from "modules/CharacterSchedule";
 
@@ -31,7 +30,6 @@ type CheckBoxButtonProps = {
 }
 
 const CheckboxButton = ({isDone , RestGage, ItemName,ID} : CheckBoxButtonProps) => {
-    const [isRestGage] = useState<undefined | number>(RestGage);
 
     const dispatch = useDispatch();
     
@@ -48,7 +46,7 @@ const CheckboxButton = ({isDone , RestGage, ItemName,ID} : CheckBoxButtonProps) 
     return (
         <Check isChecked={isDone} onClick={onClick} >
             <ButtonIcon>
-                {isDone ? <AiOutlineCheck fontSize={"2em"} /> : isRestGage !== undefined ? `${isRestGage}` : ""}                
+                {isDone ? <AiOutlineCheck fontSize={"2em"} /> : RestGage !== undefined ? `${RestGage}` : ""}                
             </ButtonIcon>
         </Check>      
     )

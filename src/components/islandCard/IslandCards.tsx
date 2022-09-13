@@ -34,7 +34,7 @@ const IslandCards = () => {
 ``
     return (
         <IslandCardsStyle>
-            <Card scheduleName="모험섬" time={thisData?.IslandDate.split(" ")[1]} isDone={procyonData.todayIsland.isDone} />
+            <Card scheduleName="모험섬" time={thisData?.IslandDate.split(" ")[1]} isDone={procyonData.todayIsland.isDone} onoff={true} />
             <IslandCardStyle>
                 {thisData?.Island.map((e,i) => (<IslandCard key={i} Name={ e.Name} Reward={e.Reward} />
                  )) ?? <h2>값이 존재하지 않습니다</h2>}
