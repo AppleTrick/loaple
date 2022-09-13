@@ -22,10 +22,15 @@ const Background = styled.div`
 `;
 
 const ModalBox = styled.div`
-  width: 25rem;
-  background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    width: 35%;
+    height: 75%;
+    background-color: white;
 `;
-
 
 
 const Modal = ({ onClose }: ModalProps) => {
