@@ -18,7 +18,7 @@ export type NaviState= {
 
 // 초기값
 const initialState : NaviState = {
-    open: true
+    open: false
 };
 
 //reducer 작성
