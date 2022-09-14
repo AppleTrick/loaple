@@ -8,7 +8,14 @@ const ADD_CHARACTER = "Add_Character" as const; // 케릭터 데이터 추가하
 const ISDONE_WEEKLY = "IsDone_Weekly" as const; // 참 거짓 바꿔주는거
 const UPDATE_CHARACTER = "Update_Character" as const // 케릭터 정보 업데이트
 const DELETE_CHARACTER = "Delete_Character" as const // 케릭터 정보 삭제
+const RESET_DAILYSCHEDULE = "Reset_DailySchedule" as const // 일간 케릭터 정보 갱신
+const RESET_WEEKLYSCHEDULE = "Reset_WeeklySchedule" as const // 주간 케릭터 정보 갱신
 
+// 주간 스케쥴 리셋
+export type ResetDailySchedule = {
+    RestGage: number
+    plusNumbe : number
+}
 
 // 케릭터 업데이트 타입
 export type UpdateCharacter = AddCharacter & DeleteCharacter
@@ -43,11 +50,13 @@ const IsDone_Toggle = createAction<IsDoneType, typeof ISDONE_TOGGLE>(ISDONE_TOGG
 const IsDone_Weekly = createAction<IsDoneWeekly, typeof ISDONE_WEEKLY>(ISDONE_WEEKLY);
 const Update_Character = createAction<UpdateCharacter , typeof UPDATE_CHARACTER>(UPDATE_CHARACTER);
 const Delete_Character = createAction<DeleteCharacter, typeof DELETE_CHARACTER>(DELETE_CHARACTER);
+const Reset_DailySchedule = createAction<ResetDailySchedule, typeof RESET_DAILYSCHEDULE>(RESET_DAILYSCHEDULE);
+const Reset_WeeklySchedule = createAction(RESET_WEEKLYSCHEDULE);
 
 
 
 // 외부에서 dispatch 시킬수있게 사용 
-export { IsDone_Toggle , AddsCharacter , IsDone_Weekly , Update_Character, Delete_Character}
+export { IsDone_Toggle , AddsCharacter , IsDone_Weekly , Update_Character, Delete_Character,Reset_DailySchedule,Reset_WeeklySchedule}
 
 
 // 타입 정의항목
@@ -269,6 +278,41 @@ const ScheduleReducer = createReducer(initialState, {
     Delete_Character: (state, action) => {
         state.Characters = state.Characters.filter((e) => e.ID !== action.payload.ID);
         localStorage.setItem("scheduleData", JSON.stringify(state));
+        return state;
+    },
+    Reset_DailySchedule: (state, action) => {
+        state.Characters.forEach((e) => {
+            for (const key in e.Daily) {
+                if (e.Daily[key].isDone) {
+                    if (e.Daily[key].RestGage !== undefined) {
+                        e.Daily[key].RestGage = Number(e.Daily[key].RestGage) - 2 
+                        if (Number(e.Daily[key].RestGage) < 0) {
+                            e.Daily[key].RestGage = 0;
+                        }
+                        e.Daily[key].RestGage = Number(e.Daily[key].RestGage) + action.payload.RestGage
+
+                        if (Number(e.Daily[key].RestGage) > 5) {
+                            e.Daily[key].RestGage = 5;
+                        }
+                    }
+                    e.Daily[key].isDone = false;
+                } else {                    
+                    if (e.Daily[key].RestGage !== undefined) {
+                        console.log(e.Daily[key].RestGage);
+                        e.Daily[key].RestGage = Number(e.Daily[key].RestGage) + 1 + action.payload.RestGage
+                
+                        if (Number(e.Daily[key].RestGage) > 5) {
+                            e.Daily[key].RestGage = 5;
+                        }
+                    }
+                    e.Daily[key].isDone = false;
+                }
+            }
+        })
+        localStorage.setItem("scheduleData", JSON.stringify(state));
+        return state
+    },
+    Reset_WeeklySchedule : (state) => {
         return state;
     }
 })

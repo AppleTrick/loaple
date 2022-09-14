@@ -1,3 +1,4 @@
+import { Reset_DailySchedule } from "modules/CharacterSchedule";
 import { isDoneChange, isSHowChange, procyonAllReset } from "modules/ProcyonCompossActions";
 import { useDispatch } from "react-redux";
 
@@ -212,7 +213,6 @@ export const oneTimeReset = () => {
 }
 
 // 일간 스케줄 초기화
-// 여기에 나중에 일간 스케줄 초기화도 시켜줘야됨
 export const dailyReset = () => {
     const date = new Date();
     const dispatch = useDispatch(); 
@@ -347,12 +347,12 @@ export const scheduleReset = () => {
     const sixAm = todaySixAm().getTime(); // 오전 6시
     const now = nowTime().getTime(); // 현재시간
 
-    // 날짜기 지낫는지 확인해야됨
+    const dispatch = useDispatch(); 
     
 
     // 과거 데이터 < 현재 접속일 < 오전 현재일 6시일 경우 :: 새벽
     if (connectTime < now && now < sixAm) {
-        const tweenty24 = 1 * 1000 * 60 * 60 * 24;
+        const tweenty24 = 1 * 1000 * 60 * 60 * 24; // 24시간 계산
         tweenty24 - sixAm + connectTime
         if (tweenty24 + connectTime - sixAm > 0) {
             console.log("데이터 변화가 필요가 없음");
@@ -385,51 +385,31 @@ export const scheduleReset = () => {
     } else if (connectTime < sixAm && sixAm < now) {
         const value = sixAm - connectTime
         const tweenty24 = 1 * 1000 * 60 * 60 * 24;
-        if (value < tweenty24) {
-            console.log("휴식게이지 를 더할 필요가 없음");
-            // isDone false =>
-            // if (restGage == 5){
-            //    return
-            // }
-            // restGage = restGage + 1;
-            //
-
-            // isDone true =>
-            //     restGage = restgage - 2 
-            //      if(restGage < 0){
-            //          restGage = 0 
-            //      }
-            //      isDone false 로 변경
+        if (value < tweenty24) { //
+            dispatch(Reset_DailySchedule(
+                {
+                    RestGage: 0,
+                    plusNumbe : 0
+                }
+            ))
         } else {
-            const PlusGage = Math.floor(value / tweenty24);
-            // isDone false =>
-            // if (restGage == 5){
-            //    return
-            // }
-            // restGage = restGage + PlusGage + 1;
-            // if ( restGage > 5){
-            //      restGage = 5
-            // }
-            //
-
-             // isDone true =>
-            //     restGage = restgage - 2
-            //      if(restGage < 0){
-            //          restGage = 0
-            //      }
-            //     restGage = restGage + PlusGage;
-            //     if(resgGage > 5){
-            //         restGage = 5
-            //     }
-            //     isDone false 로 변경
+            const Gage = Math.floor(value / tweenty24);
+                dispatch(Reset_DailySchedule(
+                    {
+                        RestGage: Gage,
+                        plusNumbe : 0
+                    }
+                ))
         }
     
     // 현재일 오전 6시 < 과거 데이터 < 현재 접속일일 경우 => noting
     } else if (sixAm < connectTime && connectTime < now) {
-        console.log("reset 필요 없음");
-        const tweenty24 = 1 * 1000 * 60 * 60 * 24;
-        console.log(tweenty24); 
-
+        dispatch(Reset_DailySchedule(
+            {
+                RestGage: 0,
+                plusNumbe : 0
+            }
+        ))
     }
     
     return 0;
