@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// 타입 정의
 export type IslandType = {
     Name: string
     Reward: string

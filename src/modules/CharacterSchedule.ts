@@ -298,7 +298,6 @@ const ScheduleReducer = createReducer(initialState, {
                     e.Daily[key].isDone = false;
                 } else {                    
                     if (e.Daily[key].RestGage !== undefined) {
-                        console.log(e.Daily[key].RestGage);
                         e.Daily[key].RestGage = Number(e.Daily[key].RestGage) + 1 + action.payload.RestGage
                 
                         if (Number(e.Daily[key].RestGage) > 5) {
