@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const FormBox = styled.div`
     width: 60%;
+    text-align: left;
 `
 
 const InputBox = styled.div`
@@ -50,7 +51,9 @@ const InputBoxButton = styled.button`
     color: #607d8b;
     background: transparent;
     border-radius: 30px;
-    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+    }
 `
 
 const H2Box = styled.h2`
@@ -105,7 +108,6 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
     const { characterName, characterJob, characterLevel, guardianRestGage, choseDungeonRestGage } = characterData;
 
     return (
-        <>
             <FormBox>
                 <H2Box>케릭터 추가하기</H2Box>
                 <form onSubmit={(e) => onSubmit(e)}>
@@ -160,7 +162,6 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
                     </ButtonBox>
                 </form>
             </FormBox>
-        </>
     )
 }
 

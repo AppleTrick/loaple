@@ -74,7 +74,10 @@ const InputBoxButton = styled.button`
     color: #607d8b;
     background: transparent;
     border-radius: 30px;
-    cursor: pointer;
+    
+    &:hover{
+        cursor: pointer;
+    }
 `
 
 const H2Box = styled.h2`
