@@ -6,7 +6,8 @@ import { IsDone_Toggle } from "modules/CharacterSchedule";
 const Check = styled.div<{isChecked : boolean}>`
     height: 30px;
     width: 30px;
-    background-color: ${(props) => props.isChecked ? "#5bcd3e" : "#d5d5d5"};
+    background-color: ${(props) => props.isChecked ? "#5bcd3e" : "transparent"};
+    border: 2px solid black;
     border-radius: 5px;
     cursor: pointer;
     display: flex;

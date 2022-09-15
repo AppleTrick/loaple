@@ -2,10 +2,11 @@ import { CharacterSchedule, Delete_Character, Update_Character } from "modules/C
 import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components"
+import JobSelect from "./JobSelect";
 import ModalPortal from "./ModalPortal";
 
 const Background = styled.div`
-    z-index: 998; /* 의문이 들었던 부분 */
+    z-index: 990; /* 의문이 들었던 부분 */
     height: 100%;
     width: 100%;
     display: flex;
@@ -22,7 +23,7 @@ const ModalBox = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 991;
     width: 35%;
     height: 75%;
     background-color: white;
@@ -146,6 +147,13 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
         }
     );
 
+    const [openJob, setOpenJob] = useState(false);
+
+    const openJobSelect = () => {
+        console.log(openJob);
+        setOpenJob(!openJob);
+    }
+
     const { characterName, characterJob, characterLevel, guardianRestGage, choseDungeonRestGage } = characterData;
 
     return (
@@ -169,9 +177,12 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
                                 <InputBoxInput
                                     id="characterJob"
                                     placeholder="케릭터 직업을 입력해주세요." value={characterJob}
+                                    
                                     onChange={onChange}
                                 />
                             </InputBox>
+                            <button type="button" onClick={openJobSelect}>클릭</button>
+                            {openJob ? <JobSelect close={openJobSelect } /> : ""}
                            
                             <InputBox>
                                 <InputBoxText>레벨</InputBoxText>
