@@ -311,7 +311,15 @@ const ScheduleReducer = createReducer(initialState, {
         localStorage.setItem("scheduleData", JSON.stringify(state));
         return state
     },
-    Reset_WeeklySchedule : (state) => {
+    Reset_WeeklySchedule: (state) => {
+        for (const key in state.Expedition.Weekly) {
+            state.Expedition.Weekly[key].isDone = false;
+        }
+        state.Characters.forEach((e) => {
+            for (const key in e.Weekly) {
+                e.Weekly[key].isDone = false
+            }
+        })
         return state;
     }
 })

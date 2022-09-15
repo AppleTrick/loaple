@@ -1,6 +1,6 @@
 import { Reset_DailySchedule } from "modules/CharacterSchedule";
 import { useDispatch } from "react-redux";
-import { prcyonShowDispatch, procyonIsDoneChangeDispatch } from "./DispatchFunc";
+import { prcyonShowDispatch, procyonIsDoneChangeDispatch, weeklyReset } from "./DispatchFunc";
 
 
 // 화면 표기 리셋
@@ -148,11 +148,11 @@ export const oneTimeReset = () => {
     const connectTime = new Date(getConnectTime()).getTime(); // 마지막 데이터 기록 시간
     const sixAm = todaySixAm().getTime(); // 오전 6시
     const now = nowTime().getTime(); // 현재시간
-    const ResetTime = getNextResetTime(); // 리셋 타임 
+    const ResetTime = new Date(getNextResetTime()).getTime(); // 리셋 타임 
 
     if (now > ResetTime) {
         // 모든 주간데이터 리셋 하는 함수 작동시키키
-
+        weeklyReset();
         // 리셋 이후 다음 리셋 타임 잡기
         setNextResetTime();
     }

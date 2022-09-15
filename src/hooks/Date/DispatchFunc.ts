@@ -1,3 +1,4 @@
+import { Reset_WeeklySchedule } from "modules/CharacterSchedule";
 import { isDoneChange, isSHowChange, procyonAllReset } from "modules/ProcyonCompossActions";
 import { useDispatch } from "react-redux";
 
@@ -39,11 +40,10 @@ export const procyonIsDoneChangeDispatch = (a?:boolean , b?:boolean, c?:boolean)
     }
 }
 
-// 주간 데이터 전부 리셋
-// 주간 프로키온 , 일정 초기화 알고리즘
 export const weeklyReset = () => {
-
-    // 프로키온 데이터 리셋
     const dispatch = useDispatch();   
+    // 프로키온 데이터 리셋
     dispatch(procyonAllReset());
+    // 주간 케릭터 일정 리셋
+    dispatch(Reset_WeeklySchedule());
 }
