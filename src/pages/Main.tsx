@@ -6,6 +6,7 @@ import ProcyonComposs from "containers/ProcyonComposs";
 import Occupation from "containers/Occupation";
 import CharactersSchedule from "containers/CharactersSchedule";
 import Expedition from "containers/Expedition";
+// import { setNextResetTime } from "hooks/Date/Date";
 
 const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
@@ -16,12 +17,16 @@ const MainDiv = styled.div<{open : boolean}>`
     transition: 0.5s;
 `
 
-
 const Main = () => {
     const openValue = useSelector((state: RootState) => state.naviactions);
+
+    // const onclick = () => {
+    //     setNextResetTime();
+    // }
     return (
         <>
             <MainDiv open={openValue.open}>
+                {/* <button onClick={onclick}>버튼</button> */}
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>
