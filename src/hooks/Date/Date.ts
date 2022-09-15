@@ -1,19 +1,18 @@
 import { Reset_DailySchedule } from "modules/CharacterSchedule";
-import { isDoneChange, isSHowChange, procyonAllReset } from "modules/ProcyonCompossActions";
 import { useDispatch } from "react-redux";
+import { prcyonShowDispatch, procyonIsDoneChangeDispatch } from "./DispatchFunc";
 
 
-// 일 월 화 수 목 금 토 까지 프로키욘 나침반을 보여줌
+// 화면 표기 리셋
 export const procyonDate = () => {
-    const dispatch = useDispatch();   
     const date = new Date();
 
-    const six = todaySixAm().getTime();    // 오전 6시
-    const now = nowTime().getTime();       // 현재 시간
+    const six = todaySixAm().getTime();    
+    const now = nowTime().getTime();      
 
-    let dayVal = date.getDay()             // 현재 요일
+    let dayVal = date.getDay()             
 
-    if (six > now) {                       // 오전 6시 이전에면 이전 일 프로키온 나침반을 표기해준다.
+    if (six > now) {                      
         dayVal = dayVal - 1;
         if (dayVal < 0) {
             dayVal = 6;
@@ -23,108 +22,59 @@ export const procyonDate = () => {
     switch (dayVal) {
         // 일요일
         case 0:
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(true, true, false);
             break;
         // 월요일
         case 1:
-            dispatch(isSHowChange({
-                bool: true,
-                propName: "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(true, false, false);
             break;
         // 화요일
         case 2:
-            dispatch(isSHowChange({
-                bool: false,
-                propName: "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(false, true, true);
             break;
         // 수요일
         case 3:
-            dispatch(isSHowChange({
-                bool: false,
-                propName: "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(false, false, false);
             break;
         // 목요일
         case 4:
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(true, false, true);
             break;
         // 금요일
         case 5:
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(false, true, false);
             break;
         // 토요일
         case 6:
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "chaosGate"
-            }))
-            dispatch(isSHowChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isSHowChange({
-                bool: true,
-                propName : "ghostShip"
-            }))
+            prcyonShowDispatch(true, false, true);
+            break;
+        default:
+            break;
+    }
+}
+// 체크표시 리셋
+export const procyonReset = () => {
+    switch (nowTime().getDay()) {
+        case 0:
+            procyonIsDoneChangeDispatch(false, false, false);
+            break;
+        case 1:
+            procyonIsDoneChangeDispatch(false, undefined, false);
+            break;
+        case 2:
+            procyonIsDoneChangeDispatch(undefined, false, false);
+            break;
+        case 3:
+            procyonIsDoneChangeDispatch(false, false, false);
+            break;
+        case 4:
+            procyonIsDoneChangeDispatch(false, undefined, false);
+            break;
+        case 5:
+            procyonIsDoneChangeDispatch(undefined, false, false);
+            break;
+        case 6:
+            procyonIsDoneChangeDispatch(false, undefined, false);
             break;
         default:
             break;
@@ -145,201 +95,74 @@ export const procyonHour = () => {
 
 // 처음 접속기록 확인하기
 export const checkConectTime = () => {
-    // 기록이 없으면 데이터를 저장시켜줌
     if (getConnectTime() === null) {
         console.log("데이터 기록이 없음, 데이터 기록을 생성합니다.");
-        setConnectTime(); // 시간 설정
+        setConnectTime(); 
         return false;
     }
-    // 기록이 있으면 
     return true;
-}
-
-
-// 오늘 오전 6시 Date 객체를 리턴시킴
-export const todaySixAm = () => {
-    const date = new Date();
-    const six = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 6);
-    return six;    
-}
-
-// 접속 기록 저장
-export const setConnectTime = () => {
-    const date = new Date();
-    localStorage.setItem('lastConnectTime', JSON.stringify(date));     
-}
-
-// 이전 접속 기록 가지고 오기
-export const getConnectTime = () => {
-    const getData = JSON.parse(localStorage.getItem('lastConnectTime') || "null");
-    return getData;
 }
 
 // 현재 시간 가지고 오기
 export const nowTime = () => {
-    const date = new Date();
-    return date;
+    return new Date();
 }
 
-// 주간 값 가지고 오기
-export const getWeeklyResetValue = () => {
-    const getWeeklyResetValue = JSON.parse(localStorage.getItem('weeklyResetValue') || "null");
-    return getWeeklyResetValue;
+// 오늘 오전 6시 Date 객체를 리턴시킴
+export const todaySixAm = () => {
+    return new Date(nowTime().getFullYear(), nowTime().getMonth(), nowTime().getDate(), 6);    
 }
 
-// 주간 값 세팅 하기
-export const setWeeklyResetValue = (isValue : boolean ) => {
-    localStorage.setItem('weeklyResetValue', JSON.stringify(isValue));   
+// setter 접속 기록 저장 
+export const setConnectTime = () => {
+    localStorage.setItem('lastConnectTime', JSON.stringify(nowTime()));     
+}
+
+// getter 접속 기록 가지고 오기
+export const getConnectTime = () => {
+    return JSON.parse(localStorage.getItem('lastConnectTime') || "null");
+}
+
+// setter 리셋 타임 저장
+export const setNextResetTime = () => {
+    const date = new Date(); 
+    const day = date.getDay();
+    // 현재 일 - 요일 + ( 일요일이면 + 1 /  아니면 다음주 월요일을 구하기 위해 + 8 + 수요일이니까 + 2 함)
+    const calcDate = date.getDate() - day + ((day == 0 ? 1 : 8) + 2);  
+    const nextDate = new Date(date.setDate(calcDate))
+    const nextTime = new Date(nextDate.getFullYear(), nextDate.getMonth(), nextDate.getDate(), 6);
+    localStorage.setItem('ResetTime', JSON.stringify(nextTime)); 
+}
+
+// getter 리셋 타임 가지고 오기
+export const getNextResetTime = () => {
+    return JSON.parse(localStorage.getItem('ResetTime') || "null");
 }
 
 // 프로키온 데이터 리셋함수
 export const oneTimeReset = () => {
-    if (getConnectTime() == null) { // 예외 처리부분
+    if (getConnectTime() == null) { 
         return;
     }
+
     const connectTime = new Date(getConnectTime()).getTime(); // 마지막 데이터 기록 시간
     const sixAm = todaySixAm().getTime(); // 오전 6시
     const now = nowTime().getTime(); // 현재시간
-  
-    if (connectTime < sixAm && now < sixAm) {
-        console.log("리셋불필요");
-    } else if (connectTime < sixAm && sixAm < now) {
-        console.log("프로키온 데이터 리셋필요");
-        dailyReset();
-    } else {
-        console.log("리셋불필요");
-    }
-    setConnectTime(); // 마지막 접속 기록을 리셋 시켜준다.
-}
+    const ResetTime = getNextResetTime(); // 리셋 타임 
 
-// 일간 스케줄 초기화
-export const dailyReset = () => {
-    const date = new Date();
-    const dispatch = useDispatch(); 
+    if (now > ResetTime) {
+        // 모든 주간데이터 리셋 하는 함수 작동시키키
 
-    // 프로키온 초기화
-    switch (date.getDay()) {
-        // 일요일
-        case 0:
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "chaosGate"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 월요일
-        case 1:
-            dispatch(isDoneChange({
-                bool: false,
-                propName: "chaosGate"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 화요일
-        case 2:
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 수요일
-        case 3:
-            dispatch(isDoneChange({
-                bool: false,
-                propName: "chaosGate"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 목요일
-        case 4:
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "chaosGate"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 금요일
-        case 5:
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "fieldBoss"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 토요일
-        case 6:
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "chaosGate"
-            }))
-            dispatch(isDoneChange({
-                bool: false,
-                propName : "todayIsland"
-            }))
-            break;
-        // 예외처리사항
-        default:
-            break;
+        // 리셋 이후 다음 리셋 타임 잡기
+        setNextResetTime();
     }
 
+    if (connectTime < sixAm && sixAm < now) {
+        console.log("프로키온 데이터 리셋");
+        procyonReset();
+    }
 
-    // 스케줄 초기화 알고리즘
-}
-
-// 주간 프로키온 , 일정 초기화 알고리즘
-export const weeklyReset = () => {
-    const dispatch = useDispatch(); 
-    dispatch(isDoneChange({
-        bool: false,
-        propName : "ghostShip"
-    }))
-    dispatch(isDoneChange({
-        bool: false,
-        propName : "slimeIsland"
-    }))
-    dispatch(isDoneChange({
-        bool: false,
-        propName : "medeiaIsland"
-    }))
-}
-
-
-// 프로키온 초기화
-export const weeklyProcyonAllReset = () => {
-    const dispatch = useDispatch(); 
-    dispatch(procyonAllReset());
-}
-
-// 스케줄 전부 초기화
-export const characterAllReset = () => {
-    return 0;
+    setConnectTime(); 
 }
 
 export const scheduleReset = () => {
@@ -349,68 +172,54 @@ export const scheduleReset = () => {
 
     const dispatch = useDispatch(); 
     
-
     // 과거 데이터 < 현재 접속일 < 오전 현재일 6시일 경우 :: 새벽
     if (connectTime < now && now < sixAm) {
+        
         const tweenty24 = 1 * 1000 * 60 * 60 * 24; // 24시간 계산
-        tweenty24 - sixAm + connectTime
+
         if (tweenty24 + connectTime - sixAm > 0) {
             console.log("데이터 변화가 필요가 없음");
         } else {
-            console.log("데이터 변화 필요");
-            const PlusNumber = Math.floor((sixAm - connectTime - tweenty24) / tweenty24) + 1;
-            // isDone false =>
-            // if (restGage == 5){
-            //    return
-            // }
-            // restGage = restGage + PlusNumber + 1;
-            // if ( restGage > 5){
-            //      restGage = 5
-            // }
-
-            // isDone true =>
-            //     restGage = restgage - 2
-            //      if(restGage < 0){
-            //          restGage = 0
-            //      }
-            //     restGage = restGage + PlusGage;
-            //     if(resgGage > 5){
-            //         restGage = 5
-            //     }
-            //     isDone false 로 변경
-            
+            const Gage = Math.floor((sixAm - connectTime) / tweenty24);
+            dispatch(Reset_DailySchedule(
+                {
+                    RestGage: Gage - 1,
+                    plusNumbe : 0
+                }
+            ))        
         }
         
     // 과거 데이터 접속 < 현재일 오전 6시 < 현재 접속일일 경우  :: 오전 오후
     } else if (connectTime < sixAm && sixAm < now) {
         const value = sixAm - connectTime
         const tweenty24 = 1 * 1000 * 60 * 60 * 24;
-        if (value < tweenty24) { //
+
+        if (value < tweenty24) { //하루 이하
             dispatch(Reset_DailySchedule(
                 {
                     RestGage: 0,
                     plusNumbe : 0
                 }
             ))
-        } else {
+        } else { // 하루 이상
             const Gage = Math.floor(value / tweenty24);
-                dispatch(Reset_DailySchedule(
-                    {
-                        RestGage: Gage,
-                        plusNumbe : 0
-                    }
-                ))
+            dispatch(Reset_DailySchedule(
+                {
+                    RestGage: Gage,
+                    plusNumbe : 0
+                }
+            ))
         }
     
     // 현재일 오전 6시 < 과거 데이터 < 현재 접속일일 경우 => noting
     } else if (sixAm < connectTime && connectTime < now) {
+        // 리셋 즉각적용 보기
         dispatch(Reset_DailySchedule(
             {
                 RestGage: 0,
                 plusNumbe : 0
             }
         ))
+        console.log("데이터 변화가 필요가 없음");
     }
-    
-    return 0;
 }
