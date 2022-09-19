@@ -2,6 +2,7 @@ import { AddsCharacter } from "modules/CharacterSchedule";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import JobSelect from "./JobSelect";
 
 
 const FormBox = styled.div`
@@ -12,7 +13,6 @@ const FormBox = styled.div`
 const InputBox = styled.div`
     margin-bottom: 20px;
 `
-
 const InputBoxText = styled.span`
     font-size: 16px;
     margin-bottom: 5px;
@@ -20,9 +20,6 @@ const InputBoxText = styled.span`
     color: #607db8;
     letter-spacing: 1px;
 `
-
-
-
 const InputBoxInput = styled.input`
     width: 100%;
     padding: 10px 20px;
@@ -35,7 +32,18 @@ const InputBoxInput = styled.input`
     background: transparent;
     border-radius: 30px;
 `
-
+const InputBoxInputClick = styled.button`
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 30px;
+`
 const ButtonBox = styled.div`
     display: flex;
     justify-content: center;
@@ -55,7 +63,6 @@ const InputBoxButton = styled.button`
         cursor: pointer;
     }
 `
-
 const H2Box = styled.h2`
     font-size: 1.5em;
     font-weight: 600;
@@ -98,12 +105,22 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
     const [characterData, setCharacterData] = useState<CharacterData>(
         {
             characterName: "",
-            characterJob: "",
+            characterJob: "직업을 선택해주세요",
             characterLevel: 0,
             guardianRestGage: 0,
             choseDungeonRestGage : 0
         }
     );
+
+    const [openJob, setOpenJob] = useState(false);
+
+    const openJobSelect = () => {
+        setOpenJob(!openJob);
+    }
+
+    const setJob = (Name: string) => {
+        setCharacterData({ ...characterData, ["characterJob"]: Name });        
+    }
 
     const { characterName, characterJob, characterLevel, guardianRestGage, choseDungeonRestGage } = characterData;
 
@@ -122,12 +139,13 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
 
                     <InputBox>
                         <InputBoxText>직업</InputBoxText>
-                        <InputBoxInput
+                        <InputBoxInputClick
+                            type="button"
                             id="characterJob"
-                            placeholder="케릭터 직업을 입력해주세요." value={characterJob}
-                            onChange={onChange}
-                        />
+                            onClick={openJobSelect}
+                    >{characterJob}</InputBoxInputClick>
                     </InputBox>
+                {openJob ? <JobSelect close={openJobSelect} setJob={ setJob } /> : ""}
                     
                     <InputBox>
                         <InputBoxText>레벨</InputBoxText>

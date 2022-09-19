@@ -2,7 +2,8 @@ import CharacterJobSelect from "../characterJobSelect/CharacterJobselect";
 import styled from "styled-components";
 
 interface JobSelectProps {
-    close : () => void
+    close: () => void
+    setJob : (N : string) => void
 }
 
 const AllDiv = styled.div`
@@ -20,17 +21,16 @@ const AllDiv = styled.div`
 `
 
 const JobSelectDiv = styled.div`
-    width:720px;
+    width:820px;
     height:360px;
     background: white;
 `
 
-const JobSelect = ({close}: JobSelectProps)   => {
+const JobSelect = ({close, setJob}: JobSelectProps)   => {
     return (
         <AllDiv>
             <JobSelectDiv>
-                <button onClick={close}>끄기</button>
-                <CharacterJobSelect/>
+                <CharacterJobSelect close={ close } setJob={setJob} />
             </JobSelectDiv>
         </AllDiv>
            

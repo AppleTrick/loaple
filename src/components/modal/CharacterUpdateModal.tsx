@@ -17,7 +17,6 @@ const Background = styled.div`
     top: 0;
     background-color: #00000033;
 `;
-
 const ModalBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -28,15 +27,12 @@ const ModalBox = styled.div`
     height: 75%;
     background-color: white;
 `;
-
 const FormBox = styled.div`
     width: 60%;
 `
-
 const InputBox = styled.div`
     margin-bottom: 20px;
 `
-
 const InputBoxText = styled.span`
     font-size: 16px;
     margin-bottom: 5px;
@@ -44,9 +40,6 @@ const InputBoxText = styled.span`
     color: #607db8;
     letter-spacing: 1px;
 `
-
-
-
 const InputBoxInput = styled.input`
     width: 100%;
     padding: 10px 20px;
@@ -59,7 +52,18 @@ const InputBoxInput = styled.input`
     background: transparent;
     border-radius: 30px;
 `
-
+const InputBoxInputClick = styled.button`
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 30px;
+`
 const ButtonBox = styled.div`
     display: flex;
     justify-content: center;
@@ -80,7 +84,6 @@ const InputBoxButton = styled.button`
         cursor: pointer;
     }
 `
-
 const H2Box = styled.h2`
     font-size: 1.5em;
     font-weight: 600;
@@ -105,7 +108,6 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
     const dispatch = useDispatch();
 
     const onSubmit = (e: FormEvent) => {
-        console.log("케릭터 정보 수정하기");
         dispatch(Update_Character({
             ID : getCharacterData.ID,
             CharacterName: characterData.characterName,
@@ -119,7 +121,6 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
     }
 
     const onDelete = () => {
-        console.log("케릭터 정보 삭제하기")
         dispatch(Delete_Character({
             ID : getCharacterData.ID,
         }));
@@ -150,8 +151,11 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
     const [openJob, setOpenJob] = useState(false);
 
     const openJobSelect = () => {
-        console.log(openJob);
         setOpenJob(!openJob);
+    }
+
+    const setJob = (Name : string) => {
+        setCharacterData({ ...characterData, ["characterJob"] : Name });
     }
 
     const { characterName, characterJob, characterLevel, guardianRestGage, choseDungeonRestGage } = characterData;
@@ -174,15 +178,13 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
 
                             <InputBox>
                                 <InputBoxText>직업</InputBoxText>
-                                <InputBoxInput
+                                <InputBoxInputClick
+                                    type="button"
                                     id="characterJob"
-                                    placeholder="케릭터 직업을 입력해주세요." value={characterJob}
-                                    
-                                    onChange={onChange}
-                                />
+                                    onClick={openJobSelect}
+                                >{characterJob}</InputBoxInputClick>
                             </InputBox>
-                            <button type="button" onClick={openJobSelect}>클릭</button>
-                            {openJob ? <JobSelect close={openJobSelect } /> : ""}
+                            {openJob ? <JobSelect close={openJobSelect } setJob={setJob} /> : ""}
                            
                             <InputBox>
                                 <InputBoxText>레벨</InputBoxText>

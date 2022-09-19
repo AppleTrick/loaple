@@ -1,27 +1,56 @@
+import { useGetJobImage } from "hooks/JobImage/JobImage"
 import styled from "styled-components"
 
 interface CharacterJobButtonProps {
-    characterName : string 
+    characterName: string 
+    close: () => void
+    setJob: (N : string) => void
 }
 
 
-const JobNameButton = styled.button`
-    padding: 10px 20px;
+const JobNameButton = styled.div`
+    height: 50px;
+    padding: 10px 10px;
     outline: none;
     border: 1px solid #607d8b;
-    font-size: 10px;
     letter-spacing: 1px;
     color: #607d8b;
     background: transparent;
-    border-radius: 30px;
-    
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
-const CharacterJobButton = ({characterName} : CharacterJobButtonProps) => {
+const JobName = styled.div`
+     font-size: 15px;
+`
+
+const JobImg = styled.img`
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+`
+
+
+
+const CharacterJobButton = ({ characterName, close,setJob }: CharacterJobButtonProps) => {
+    
+    const selectButton = () => {
+        setJob(characterName);
+        close();
+    }
+
     return (
-            <JobNameButton>
-                {characterName}
+        <>
+            <JobNameButton onClick={selectButton}>
+                <JobName>
+                    {characterName}
+                </JobName>
+                <JobImg src={useGetJobImage(characterName) } />
             </JobNameButton>
+        </>
+        
     )
 }
 
