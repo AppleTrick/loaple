@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { ChangeMenuList, GetMenuList, SortWeeklyDaily } from "hooks/Schedule/Schedule"
 import { useState } from "react"
 import CharacterUpdateModal from "components/modal/CharacterUpdateModal"
+import { useGetJobImage } from "hooks/JobImage/JobImage"
 
 type characterInformProps = {
     characterData : CharacterSchedule
@@ -28,6 +29,11 @@ const CharacteerNameDiv = styled.div`
     border-bottom: solid;
     border-bottom-color: rgba(38, 29, 29, 0.5);
 `
+const JobImg = styled.img`
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+`
 
 const CharacterInform = ({ characterData }: characterInformProps) => {
 
@@ -49,8 +55,11 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
     return (
         <>
         <CharacterInformDiv>  
-            <CharacteerNameDiv onClick={openCharacterInform}>
-                {CharacterName} {Job}
+                <CharacteerNameDiv onClick={openCharacterInform}>
+                    <div>
+                         {CharacterName} 
+                    </div>
+                    <JobImg src={useGetJobImage(Job)} />
             </CharacteerNameDiv>
 
             {GetMenuList().map((e, i) => {
