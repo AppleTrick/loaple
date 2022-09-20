@@ -10,6 +10,7 @@ const UPDATE_CHARACTER = "Update_Character" as const // 케릭터 정보 업데�
 const DELETE_CHARACTER = "Delete_Character" as const // 케릭터 정보 삭제
 const RESET_DAILYSCHEDULE = "Reset_DailySchedule" as const // 일간 케릭터 정보 갱신
 const RESET_WEEKLYSCHEDULE = "Reset_WeeklySchedule" as const // 주간 케릭터 정보 갱신
+const SET_SCHEDULE_DATA = "Set_Schedule_Data" as const // 정보 저장하기
 
 // 주간 스케쥴 리셋
 export type ResetDailySchedule = {
@@ -45,6 +46,11 @@ export type IsDoneType = {
 export type IsDoneWeekly = {
     propsName: string
 }
+
+export interface SetScheduleData{
+    data: ScheduleData
+}
+
 const AddsCharacter = createAction<AddCharacter, typeof ADD_CHARACTER>(ADD_CHARACTER);
 const IsDone_Toggle = createAction<IsDoneType, typeof ISDONE_TOGGLE>(ISDONE_TOGGLE);
 const IsDone_Weekly = createAction<IsDoneWeekly, typeof ISDONE_WEEKLY>(ISDONE_WEEKLY);
@@ -52,11 +58,12 @@ const Update_Character = createAction<UpdateCharacter , typeof UPDATE_CHARACTER>
 const Delete_Character = createAction<DeleteCharacter, typeof DELETE_CHARACTER>(DELETE_CHARACTER);
 const Reset_DailySchedule = createAction<ResetDailySchedule, typeof RESET_DAILYSCHEDULE>(RESET_DAILYSCHEDULE);
 const Reset_WeeklySchedule = createAction(RESET_WEEKLYSCHEDULE);
+const Set_Schedule_Data = createAction<SetScheduleData, typeof SET_SCHEDULE_DATA>(SET_SCHEDULE_DATA);
 
 
 
 // 외부에서 dispatch 시킬수있게 사용 
-export { IsDone_Toggle , AddsCharacter , IsDone_Weekly , Update_Character, Delete_Character,Reset_DailySchedule,Reset_WeeklySchedule}
+export { IsDone_Toggle , AddsCharacter , IsDone_Weekly , Update_Character, Delete_Character,Reset_DailySchedule,Reset_WeeklySchedule , Set_Schedule_Data}
 
 
 // 타입 정의항목
@@ -321,6 +328,10 @@ const ScheduleReducer = createReducer(initialState, {
             }
         })
         return state;
+    },
+    Set_Schedule_Data: (state, action) => {
+        state = action.payload.data;
+        return state
     }
 })
 

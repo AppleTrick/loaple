@@ -12,7 +12,6 @@ type characterInformProps = {
 
 const CharacterInformDiv = styled.div`
     width: 200px;
-    /* background-color: pink; */
     margin-left: 5px;
     display: flex;
     align-items: center;
@@ -38,8 +37,7 @@ const JobImg = styled.img`
 const CharacterInform = ({ characterData }: characterInformProps) => {
 
     const { CharacterName, Job } = characterData.CharacterInform
-    const Daily = characterData.Daily;
-    const Weekly = characterData.Weekly;
+    const {Daily, Weekly} = characterData
 
     // 모달 부분
     const [CharacterModal, setCharacterModal] = useState<boolean>(false)
