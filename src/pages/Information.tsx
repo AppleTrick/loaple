@@ -45,12 +45,16 @@ const Information = () => {
     }
 
     const setData = () => {
+        // 잘못된 값 검사하기 기능이 추가 되어야됨
+        // JSON.parse(text)에 대한 데이터 검사가 이뤄져야됨;
+        
         dispatch(Set_Schedule_Data(
             {
                 data: JSON.parse(text)
             }
         ))
         console.log("데이터 적용 완료");
+        setText("");
     }
 
     const copyText = async (text: string) => {
@@ -62,22 +66,19 @@ const Information = () => {
     }
 
     return (
-        <>
-            <MainDiv open={openValue.open}>
-                <TopBar />
-                <div>
-                    <h1>데이터 복사하기</h1>
-                    <GetDataButton onClick={getData}>데이터 복사하기</GetDataButton>
-                </div>
+        <MainDiv open={openValue.open}>
+            <TopBar />
+            <div>
+                <h1>데이터 복사하기</h1>
+                <GetDataButton onClick={getData}>데이터 복사하기</GetDataButton>
+            </div>
 
-                <div>
-                    <h1>데이터 가져오기</h1>
-                    <PasteDataInput onChange={(e)=>handleChange(e)}/>
-                    <SetDataButton onClick={()=>setData()}>데이터 적용하기</SetDataButton>
-                </div>
-            </MainDiv>
-        </>
-       
+            <div>
+                <h1>데이터 가져오기</h1>
+                <PasteDataInput onChange={(e) => handleChange(e)} value={text } />
+                <SetDataButton onClick={()=>setData()}>데이터 적용하기</SetDataButton>
+            </div>
+        </MainDiv>
     )
 }
 
