@@ -214,12 +214,12 @@ export const scheduleReset = () => {
     // 현재일 오전 6시 < 과거 데이터 < 현재 접속일일 경우 => noting
     } else if (sixAm < connectTime && connectTime < now) {
         // 리셋 즉각적용 보기
-        dispatch(Reset_DailySchedule(
-            {
-                RestGage: 0,
-                plusNumbe : 0
-            }
-        ))
+        // dispatch(Reset_DailySchedule(
+        //     {
+        //         RestGage: 0,
+        //         plusNumbe : 0
+        //     }
+        // ))
         console.log("데이터 변화가 필요가 없음");
     }
 }

@@ -15,8 +15,8 @@ const Navigation = () => {
                     <Style.NavUl>
                         <NavLi icon={AiFillHome} changelink={`/main` } navTitle={ `로아플`} />
                         <NavLi icon={AiFillCalendar} changelink={`/main` } navTitle={ `일정관리`} />
-                        <NavLi icon={AiFillInfoCircle} changelink={`/information` } navTitle={ `정보`} />
-                        <NavLi icon={AiFillDownSquare} changelink={`/tactics` } navTitle={ `택틱`} />
+                        <NavLi icon={AiFillInfoCircle} changelink={`/information` } navTitle={ `정보가지고오기`} />
+                        <NavLi icon={AiFillDownSquare} changelink={`/thanks` } navTitle={ `감사합니다`} />
                     </Style.NavUl>
                 </Style.Nav>
             </Style.NavContaioner>

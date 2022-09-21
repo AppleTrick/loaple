@@ -9,7 +9,7 @@ export const NavLi = styled.li`
 
     &:nth-child(1){
         margin-bottom: 40px;
-        pointer-events: none;
+        /* pointer-events: none; 이벤트 없애기 */
     }
 
     &:hover a {
