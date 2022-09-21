@@ -30,7 +30,7 @@ const Main = () => {
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>
-                    캐릭별 스케줄 변동 확인/
+                    캐릭별 스케줄
                 </h1>
                 <CharactersSchedule/>
                 <Occupation/>
