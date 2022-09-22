@@ -10,7 +10,7 @@ const characterMenuData: string[][] = [
 ]
 
 const CharactcerMenusDiv = styled.div`
-    width: 150px;
+    width: 27vh;
     background: #424242;
     margin-right: 20px;
     display: flex;
@@ -19,7 +19,7 @@ const CharactcerMenusDiv = styled.div`
 `
 
 const CharcterMenuDiv = styled.div`
-    width: 100px;
+    width: 18vh;
     height: 40px;
     align-items: center;
     display: flex;
@@ -39,6 +39,9 @@ const NameDiv = styled.div`
     float:right;
     flex-grow: 1;
     text-align: center;
+`
+const RealNameDiv = styled.div`
+    /* font-size: 1rem; */
 `
 
 const CharacterMenu = () => {
@@ -60,9 +63,9 @@ const CharacterMenu = () => {
                             <CharcterMenuDiv key={i}>
                                 {isImageExist(e)}
                             <NameDiv>
-                                <div>
+                                <RealNameDiv>
                                     {e}
-                                </div>
+                                </RealNameDiv>
                             </NameDiv>
                                
                             </CharcterMenuDiv>
