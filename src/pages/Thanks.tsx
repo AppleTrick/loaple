@@ -17,7 +17,7 @@ const Thanks = () => {
     return (
         <MainDiv open={openValue.open}>
             <TopBar />
-            <h1>thank you for visit my page</h1>
+            <h1>Thank you for visit my page</h1>
             <p>방문해주셔서 감사합니다.</p>
             <p>아브렐슈드 서버에서 로스트아크를 재밌게 즐기고 있는 유저입니다.</p>
             <p>취업준비를 시작하면서 어떤 프로젝트를 만들까 고민중,</p>

@@ -36,7 +36,7 @@ const AddCharacterButton = () => {
             <AddButton>
                 <AiOutlinePlusCircle onClick={modalOn} fontSize={"2em"} />
             </AddButton>
-            {ModalOpen && <Modal onClose={modalClose} />}
+            {ModalOpen && <Modal onClose={modalClose} whatType={"add"} />}
         </AddCharacterButtonDiv>
         
     )

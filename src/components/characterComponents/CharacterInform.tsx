@@ -3,8 +3,8 @@ import CharacterItem from "./CharacterItem"
 import styled from "styled-components"
 import { ChangeMenuList, GetMenuList, SortWeeklyDaily } from "hooks/Schedule/Schedule"
 import { useState } from "react"
-import CharacterUpdateModal from "components/modal/CharacterUpdateModal"
 import { useGetJobImage } from "hooks/JobImage/JobImage"
+import Modal from "components/modal/Modal"
 
 type characterInformProps = {
     characterData : CharacterSchedule
@@ -68,7 +68,7 @@ const CharacterInform = ({ characterData }: characterInformProps) => {
                 }
             })}
             </CharacterInformDiv>
-            {CharacterModal && <CharacterUpdateModal onClose={closeCharacterInform} getCharacterData={ characterData } />}
+            {CharacterModal && <Modal whatType="update" onClose={closeCharacterInform} getCharacterData={ characterData } />}
         </>
     )
 }
