@@ -196,7 +196,7 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
                             </InputBox>
 
                             <InputBox>
-                                <InputBoxText>카던 휴식게이지</InputBoxText>
+                                <InputBoxText>가디언 휴식게이지</InputBoxText>
                                 <InputBoxInput
                                     id="guardianRestGage"
                                     placeholder="가디언 휴식게이지를 입력해주세요." value={guardianRestGage}
@@ -205,7 +205,7 @@ const CharacterUpdateModal = ({ onClose , getCharacterData }: ModalProps) => {
                             </InputBox>
                            
                             <InputBox>
-                                <InputBoxText>가디언토벌 휴식게이지</InputBoxText>
+                                <InputBoxText>카오스던전 휴식게이지</InputBoxText>
                                 <InputBoxInput
                                     id="choseDungeonRestGage"
                                     placeholder="카오스던전 휴식게이지를 입력해주세요." value={choseDungeonRestGage}

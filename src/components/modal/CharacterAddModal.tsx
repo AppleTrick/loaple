@@ -154,19 +154,17 @@ const CharacterAddModal = ({onClose} : CharacterAddModalProps) => {
                             placeholder="케릭터 레벨을 입력해주세요." value={characterLevel}
                             onChange={onChange}
                         />
-                    </InputBox>
-
+                    </InputBox>                    
                     <InputBox>
-                        <InputBoxText>카던 휴식게이지</InputBoxText>
+                        <InputBoxText>가디언토벌 휴식게이지</InputBoxText>
                         <InputBoxInput
                             id="guardianRestGage"
                             placeholder="가디언 휴식게이지를 입력해주세요." value={guardianRestGage}
                             onChange={onChange}
                         />
                     </InputBox>
-                    
                     <InputBox>
-                        <InputBoxText>가디언토벌 휴식게이지</InputBoxText>
+                        <InputBoxText>카던 휴식게이지가디언토벌 휴식게이지</InputBoxText>
                         <InputBoxInput
                             id="choseDungeonRestGage"
                             placeholder="카오스던전 휴식게이지를 입력해주세요." value={choseDungeonRestGage}
