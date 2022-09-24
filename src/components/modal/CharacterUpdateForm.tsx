@@ -35,14 +35,12 @@ const H2Box = styled.h2`
     font-weight: 600;
     display: inline-block;
 `
-
-
-type ModalProps = {
+interface ModalProps {
     onClose: () => void;
     getCharacterData ?: CharacterSchedule;
 }
 
-type CharacterData = {
+interface CharacterData {
     characterName: string
     characterJob: string
     characterLevel: number

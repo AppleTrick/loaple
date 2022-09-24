@@ -22,7 +22,6 @@ const InputBoxInputClick = styled.button`
     background: transparent;
     border-radius: 30px;
 `
-
 interface OpenJobProps {
     openJobSelect: () => void
     JobName : string

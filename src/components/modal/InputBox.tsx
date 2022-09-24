@@ -21,6 +21,7 @@ font-size: 16px;
 letter-spacing: 1px;
 color: #607d8b;
 background: transparent;
+border-radius: 30px;
 `
 
 interface InputBoxProps {

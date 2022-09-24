@@ -12,21 +12,16 @@ const MainDiv = styled.div<{open : boolean}>`
     position: absolute;
     width: calc(${(props) => (props.open ? "100% - 300px" : "100% - 80px")});
     left: ${(props) => (props.open ? "300px" : "80px")};
-    min-height: 100vh;
+    min-height: 100%;
     background: var(--white);
     transition: 0.5s;
 `
 
 const Main = () => {
     const openValue = useSelector((state: RootState) => state.naviactions);
-
-    // const onclick = () => {
-    //     setNextResetTime();
-    // }
     return (
         <>
             <MainDiv open={openValue.open}>
-                {/* <button onClick={onclick}>버튼</button> */}
                 <TopBar />
                 <ProcyonComposs/>
                 <h1>

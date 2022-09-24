@@ -3,7 +3,6 @@ import Main from "pages/Main";
 import Information from "pages/Information";
 import Thanks from "pages/Thanks";
 import Navigation from "components/navigation/Navigation";
-
 // 라우팅 부분
 
 const AppRouter = () => {

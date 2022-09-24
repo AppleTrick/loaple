@@ -13,7 +13,6 @@ const AllDiv = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    /* background-color: transparent; */
     background-color: rgba(0,0,0,0.25);
     justify-content: center;
     align-items: center;

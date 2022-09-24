@@ -35,15 +35,14 @@ const H2Box = styled.h2`
     font-weight: 600;
     display: inline-block;
 `
-type CharacterData = {
+interface CharacterData {
     characterName: string
     characterJob: string
     characterLevel: number
     guardianRestGage: number
     choseDungeonRestGage : number
 }
-
-type CharacterAddModalProps = {
+interface CharacterAddModalProps {
     onClose: () => void;
 }
 

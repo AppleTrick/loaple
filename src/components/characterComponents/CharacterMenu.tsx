@@ -10,16 +10,20 @@ const characterMenuData: string[][] = [
 ]
 
 const CharactcerMenusDiv = styled.div`
-    width: 27vh;
+    width: 150px;
     background: #424242;
     margin-right: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    @media(min-height: 768px){
+        width: 27vh;
+    }
 `
 
 const CharcterMenuDiv = styled.div`
-    width: 18vh;
+    width: 100px;
     height: 40px;
     align-items: center;
     display: flex;
@@ -27,6 +31,10 @@ const CharcterMenuDiv = styled.div`
     border-bottom: solid;
     border-bottom-color: rgba(38, 29, 29, 0.5);
     color: white;
+
+    @media(min-height: 768px){
+        width: 18vh;
+    }
 `
 
 const IconImgDiv = styled.img`
