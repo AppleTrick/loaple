@@ -32,11 +32,10 @@ const OpenJob = ({ openJobSelect , JobName } : OpenJobProps) => {
         <>
             <InputBoxDiv>
                 <InputBoxText>직업</InputBoxText>
-                <InputBoxInputClick
-                    type="button"
-                    id="characterJob"
-                    onClick={openJobSelect}
-                    >{JobName}</InputBoxInputClick>
+                {JobName !== "" ?
+                    <InputBoxInputClick type="button" id="characterJob" onClick={openJobSelect}>{JobName}</InputBoxInputClick> 
+                    : <InputBoxInputClick type="button" id="characterJob" onClick={openJobSelect}>직업을 선택해주세요</InputBoxInputClick>
+                }
             </InputBoxDiv>
         </>
     )

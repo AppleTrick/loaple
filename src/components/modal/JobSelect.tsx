@@ -1,5 +1,6 @@
 import CharacterJobSelect from "../characterJobSelect/CharacterJobselect";
 import styled from "styled-components";
+import { MouseEvent } from "react";
 
 interface JobSelectProps {
     close: () => void
@@ -25,13 +26,22 @@ const JobSelectDiv = styled.div`
     background: white;
 `
 
-const JobSelect = ({close, setJob}: JobSelectProps)   => {
+const JobSelect = ({ close, setJob }: JobSelectProps) => {
+    
+    const backgroundClose = (e : MouseEvent) => {
+        if (e.target !== e.currentTarget) return;
+        close();   
+    }
+
     return (
-        <AllDiv>
-            <JobSelectDiv>
-                <CharacterJobSelect close={ close } setJob={setJob} />
-            </JobSelectDiv>
-        </AllDiv>
+        <>
+             <AllDiv onClick={(element)=>backgroundClose(element)}>
+                <JobSelectDiv>
+                    <CharacterJobSelect close={ close } setJob={setJob} />
+                </JobSelectDiv>
+            </AllDiv>
+        </>
+       
            
     )
 }

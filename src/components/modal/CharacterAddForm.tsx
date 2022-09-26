@@ -39,8 +39,8 @@ interface CharacterData {
     characterName: string
     characterJob: string
     characterLevel: number
-    guardianRestGage: number
-    choseDungeonRestGage : number
+    guardianRestGage: number | string
+    choseDungeonRestGage : number | string
 }
 interface CharacterAddModalProps {
     onClose: () => void;
@@ -49,29 +49,58 @@ interface CharacterAddModalProps {
 
 const CharacterAddForm = ({onClose} : CharacterAddModalProps) => {
     const dispatch = useDispatch();
-    const onSubmit = (e: FormEvent) => {
-        console.log("케릭터 정보 추가하기");
-        dispatch(AddsCharacter({
-            CharacterName: characterData.characterName,
-            Level: characterData.characterLevel,
-            Job: characterData.characterJob,
-            GaurdianRestGage : characterData.guardianRestGage,
-            ChaosDungeonRestGage : characterData.choseDungeonRestGage
-        }));
 
-        e.preventDefault();
-        onClose();
+    const checkTrue = () => {
+
+        if (characterName == "") {
+            alert("이름이 공백입니다.");
+            return false;
+        }
+        if (characterJob == "") {
+            alert("직업이 선택되지 않았습니다.");
+            return false
+        }
+        if (typeof guardianRestGage == "string" && guardianRestGage.length == 0) {
+            alert("가디언 휴식게이지에 0-5 사이의 숫자를 입력해주세요");
+            return false
+        }
+        const NumguardianRestGage = Number(guardianRestGage);
+        if (!(NumguardianRestGage <= 5 && NumguardianRestGage >= 0) || isNaN(NumguardianRestGage) ) {
+            alert("가디언 휴식게이지에 0-5 사이의 숫자를 입력해주세요");
+            return false
+        }
+        if (typeof choseDungeonRestGage == "string" && choseDungeonRestGage.length == 0) {
+            alert("카오스던전 휴식 게이지에 0-5 사이의 숫자를 입력해주세요");
+            return false
+        }
+        const NumchoseDungeonRestGage = Number(choseDungeonRestGage)
+        if (!(NumchoseDungeonRestGage <= 5 && NumchoseDungeonRestGage >= 0) || isNaN(NumchoseDungeonRestGage) ) {
+            alert("카오스던전 휴식 게이지에 0-5 사이의 숫자를 입력해주세요");
+            return false
+        }
+        return true; 
     }
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { id, value } = e.target;
-        setCharacterData({ ...characterData, [id] : value })
+    const onSubmit = (e: FormEvent) => {
+        if (checkTrue()) {
+            console.log("케릭터 정보 추가하기");
+            dispatch(AddsCharacter({
+                CharacterName: characterData.characterName,
+                Level: characterData.characterLevel,
+                Job: characterData.characterJob,
+                GaurdianRestGage : Number(characterData.guardianRestGage),
+                ChaosDungeonRestGage : Number(characterData.choseDungeonRestGage)
+            }));
+            e.preventDefault();
+            onClose();
+        }
+        e.preventDefault();
     }
 
     const [characterData, setCharacterData] = useState<CharacterData>(
         {
             characterName: "",
-            characterJob: "직업을 선택해주세요",
+            characterJob: "",
             characterLevel: 0,
             guardianRestGage: 0,
             choseDungeonRestGage : 0
@@ -88,6 +117,11 @@ const CharacterAddForm = ({onClose} : CharacterAddModalProps) => {
         setCharacterData({ ...characterData, ["characterJob"]: Name });        
     }
 
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        setCharacterData({ ...characterData, [id] : value })
+    }
+
     const { characterName, characterJob, characterLevel, guardianRestGage, choseDungeonRestGage } = characterData;
 
     return (
@@ -95,12 +129,12 @@ const CharacterAddForm = ({onClose} : CharacterAddModalProps) => {
                 <H2Box>케릭터 추가하기</H2Box>
                 <form onSubmit={(e) => onSubmit(e)}>
                 
-                <InputBox onChange={onChange} propName={"이름"} value={characterName} placeholder={ "케릭터 이름을 입력해주세요"} />
+                <InputBox onChange={onChange} propName={"이름"} InputValue={characterName} placeholder={"케릭터 이름을 입력해주세요"} ID={"characterName" } />
                     <OpenJob openJobSelect={openJobSelect} JobName={characterJob } />
                     {openJob ? <JobSelect close={openJobSelect} setJob={ setJob } /> : ""}
-                    <InputBox onChange={onChange} propName={"레벨"} value={characterLevel} placeholder={ "레벨을 입력해주세요"} />
-                    <InputBox onChange={onChange} propName={"가디언토벌 휴식게이지"} value={guardianRestGage} placeholder={"가디언토벌 휴식게이지를 입력해주세요"}/>
-                    <InputBox onChange={onChange} propName={"카던 휴식게이지"} value={choseDungeonRestGage} placeholder={"카던 휴식게이지를 입력해주세요"}/>
+                    <InputBox onChange={onChange} propName={"레벨"} InputValue={characterLevel} placeholder={ "레벨을 입력해주세요"}  ID={"characterLevel" }/>
+                    <InputBox onChange={onChange} propName={"가디언토벌 휴식게이지"} InputValue={guardianRestGage} placeholder={"가디언토벌 휴식게이지를 입력해주세요"}  ID={"guardianRestGage" }/>
+                    <InputBox onChange={onChange} propName={"카던 휴식게이지"} InputValue={choseDungeonRestGage} placeholder={"카던 휴식게이지를 입력해주세요"}  ID={"choseDungeonRestGage" }/>
                     <ButtonBox>
                         <InputBoxButton type="submit">추가하기</InputBoxButton>
                         <InputBoxButton onClick={onClose}>나가기</InputBoxButton>

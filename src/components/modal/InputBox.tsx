@@ -27,18 +27,19 @@ border-radius: 30px;
 interface InputBoxProps {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
     propName: string
-    value: string | number
-    placeholder : string
+    InputValue: string | number
+    placeholder: string
+    ID : string
 }
 
-const InputBox = ({ onChange, propName , value , placeholder} : InputBoxProps ) => {
+const InputBox = ({ onChange, propName , InputValue , placeholder , ID} : InputBoxProps ) => {
     return (
         <>
             <InputBoxDiv>
                 <InputBoxText>{ propName}</InputBoxText>
                 <InputBoxInput
-                    id="choseDungeonRestGage"
-                    placeholder={placeholder} value={value}
+                    id={ID}
+                    placeholder={placeholder} value={InputValue}
                     onChange={onChange}
                 />
             </InputBoxDiv>
