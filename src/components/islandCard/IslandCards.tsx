@@ -14,9 +14,6 @@ const IslandCardStyle = styled.div`
 
 const IslandCardsStyle = styled.div`
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
     
     &:hover{
         ${IslandCardStyle}{
