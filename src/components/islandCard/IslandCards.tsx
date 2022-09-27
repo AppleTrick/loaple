@@ -10,10 +10,14 @@ const IslandCardStyle = styled.div`
     z-index: 10;
     visibility: hidden;
     position : absolute;
-    width: inherit;
 `
 
 const IslandCardsStyle = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    
     &:hover{
         ${IslandCardStyle}{
             visibility: visible;

@@ -49,7 +49,11 @@ const NameDiv = styled.div`
     text-align: center;
 `
 const RealNameDiv = styled.div`
-    /* font-size: 1rem; */
+    font-size: 0.8rem;
+
+    @media(min-height: 768px){
+        font-size: 1rem;
+    }
 `
 
 const CharacterMenu = () => {

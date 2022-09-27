@@ -28,6 +28,8 @@ const CardTimeDiv = styled.div`
 
 
 const CardDiv = styled.div<{ onoff: boolean, isDone: boolean }>`
+height: 100%;
+
   opacity: ${(props) => {
     if (props.onoff) {
         return 1
@@ -133,7 +135,6 @@ const Card = ({ scheduleName, time, onoff = true, isDone = false }: CardItemProp
                     <AiOutlineCheck fontSize={"5em"} color={"#c6000086"} />
                 </CheckDiv>
             : ""}
-            
         </CardDiv>
     )
 }
