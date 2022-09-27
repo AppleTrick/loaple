@@ -2,6 +2,7 @@ import TopBar from "containers/TopBar";
 import { RootState } from "modules";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import thanks from "../assets/image/ThanksImage/thanks.png";
 
 const MainDiv = styled.div<{ open: boolean }>`
     position: absolute;
@@ -23,6 +24,7 @@ const Thanks = () => {
             <p>취업준비를 시작하면서 어떤 프로젝트를 만들까 고민중,</p>
             <p>제가 가장 잘 즐기고 필요하다고 생각하는 쉽게 이용하는 로스트아크 일정관리 앱을 만들게 되었습니다.</p>
             <p>부족한 점도 많고, 앞으로 추가되야될 점도 많지만 즐겁게 이용해주셨으면 싶습니다.</p>
+            <img src={thanks }/>
         </MainDiv>
             
     )
