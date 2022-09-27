@@ -1,5 +1,6 @@
 import { checkConectTime, getConnectTime, oneTimeReset, procyonDate, scheduleReset } from "hooks/Date/Date";
 import AppRouter from "router/AppRouter";
+import "./App.css";
 
 const App = () => {
 
