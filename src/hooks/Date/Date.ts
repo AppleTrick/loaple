@@ -97,7 +97,8 @@ export const procyonHour = () => {
 export const checkConectTime = () => {
     if (getConnectTime() === null) {
         console.log("데이터 기록이 없음, 데이터 기록을 생성합니다.");
-        setConnectTime(); 
+        setConnectTime();  // 마지막 접속기록 생성
+        setNextResetTime(); // 다음 리셋 타임 생성
         return false;
     }
     return true;
@@ -150,9 +151,13 @@ export const oneTimeReset = () => {
     const now = nowTime().getTime(); // 현재시간
     const ResetTime = new Date(getNextResetTime()).getTime(); // 리셋 타임 
 
+    // console.log(ResetTime);
+    
+
     if (now > ResetTime) {
         // 모든 주간데이터 리셋 하는 함수 작동시키키
         weeklyReset();
+
         // 리셋 이후 다음 리셋 타임 잡기
         setNextResetTime();
     }
