@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { prcyonShowDispatch, procyonIsDoneChangeDispatch, weeklyReset } from "./DispatchFunc";
 
 
-// 화면 표기 리셋
+/**
+ * 프로키온 데이터 표기 설정 함수
+ */
 export const procyonDate = () => {
     const date = new Date();
 
@@ -52,7 +54,9 @@ export const procyonDate = () => {
             break;
     }
 }
-// 체크표시 리셋
+/**
+ * 프로키온 데이터 요일별 리셋
+ */
 export const procyonReset = () => {
     switch (nowTime().getDay()) {
         case 0:
@@ -81,7 +85,10 @@ export const procyonReset = () => {
     }
 }
 
-// 다음 시간알려주는 함수
+/**
+ * 다음 정시를 알려주는 함수
+ * @returns string "??:00"
+ */
 export const procyonHour = () => {
     const date = new Date();
     let hour = date.getHours() + 1;
@@ -93,7 +100,12 @@ export const procyonHour = () => {
     return `${hour}:00`;
 }
 
-// 처음 접속기록 확인하기
+/**
+ * 최초접속을 확인하는 함수로
+ * 이전 접속 기록이 없으면 (접속기록)을 생성, 다음 (리셋시간) 도 생성
+ * 이전 접속기록이 없을 경우 false , 존재할 경우 true
+ * @returns boolean
+ */
 export const checkConectTime = () => {
     if (getConnectTime() === null) {
         console.log("데이터 기록이 없음, 데이터 기록을 생성합니다.");
@@ -104,27 +116,40 @@ export const checkConectTime = () => {
     return true;
 }
 
-// 현재 시간 가지고 오기
+/**
+ * 현재 시간 리턴
+ * @returns new Date()
+ */
 export const nowTime = () => {
     return new Date();
 }
 
-// 오늘 오전 6시 Date 객체를 리턴시킴
+/**
+ * 오늘 오전 6시 Date 객체
+ * @returns new Date()
+ */
 export const todaySixAm = () => {
     return new Date(nowTime().getFullYear(), nowTime().getMonth(), nowTime().getDate(), 6);    
 }
 
-// setter 접속 기록 저장 
+/**
+ * ConnectTime Setter
+ */
 export const setConnectTime = () => {
     localStorage.setItem('lastConnectTime', JSON.stringify(nowTime()));     
 }
 
-// getter 접속 기록 가지고 오기
+/**
+ * ConnectTime Getter
+ * @returns (new Date) || null
+ */
 export const getConnectTime = () => {
     return JSON.parse(localStorage.getItem('lastConnectTime') || "null");
 }
 
-// setter 리셋 타임 저장
+/**
+ * 다음 리셋 시간 setter
+ */
 export const setNextResetTime = () => {
     const date = new Date(); 
     const day = date.getDay();
@@ -135,12 +160,18 @@ export const setNextResetTime = () => {
     localStorage.setItem('ResetTime', JSON.stringify(nextTime)); 
 }
 
-// getter 리셋 타임 가지고 오기
+/**
+ * 다음 리셋 시간 getter
+ * @returns stirng(new Date)|| null
+ */
 export const getNextResetTime = () => {
     return JSON.parse(localStorage.getItem('ResetTime') || "null");
 }
 
-// 프로키온 데이터 리셋함수
+/**
+ * 프로키온 데이터 || 주간 데이터 리셋
+ * @returns void
+ */
 export const oneTimeReset = () => {
     if (getConnectTime() == null) { 
         return;
@@ -151,25 +182,22 @@ export const oneTimeReset = () => {
     const now = nowTime().getTime(); // 현재시간
     const ResetTime = new Date(getNextResetTime()).getTime(); // 리셋 타임 
 
-    // console.log(ResetTime);
-    
-
     if (now > ResetTime) {
-        // 모든 주간데이터 리셋 하는 함수 작동시키키
         weeklyReset();
-
-        // 리셋 이후 다음 리셋 타임 잡기
         setNextResetTime();
     }
 
     if (connectTime < sixAm && sixAm < now) {
-        console.log("프로키온 데이터 리셋");
         procyonReset();
     }
 
     setConnectTime(); 
 }
 
+
+/**
+ * 일간 스케줄 리셋
+ */
 export const scheduleReset = () => {
     const connectTime = new Date(getConnectTime()).getTime(); // 마지막 데이터 기록 시간
     const sixAm = todaySixAm().getTime(); // 오전 6시
