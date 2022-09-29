@@ -47,7 +47,7 @@ export type IsDoneWeekly = {
     propsName: string
 }
 
-export interface SetScheduleData{
+export type SetScheduleData = {
     data: ScheduleData
 }
 
